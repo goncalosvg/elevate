@@ -1,0 +1,59 @@
+@use "@styles/@root/colors";
+@use "@styles/@root/utils";
+
+#widget {
+  width: 400px;
+  padding: 30px;
+  background: colors.$background;
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  opacity: 0;
+  border-radius: 20px;
+  border: 1px solid colors.$border;
+  transform: translateY(100%);
+  @include utils.animation(primary);
+  z-index: 3;
+
+  .title {
+    .heading {
+      width: 80%;
+      color: colors.$dark-title;
+      font-family: utils.$font-medium;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -1px;
+      margin: 0 0;
+    }
+  }
+  .close {
+    width: 30px;
+    height: 30px;
+    background: colors.$card;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 250px;
+    cursor: pointer;
+
+    .icon {
+      width: 48%;
+      height: auto;
+    }
+  }
+  &.active {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@media only screen and (min-width: 1px) and (max-width: 767px) {
+  #widget {
+    width: 95%;
+    left: 13px;
+    bottom: 10px;
+  }
+}

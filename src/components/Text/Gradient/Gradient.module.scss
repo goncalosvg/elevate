@@ -1,0 +1,26 @@
+@use "@styles/@root/colors";
+@use "@styles/@root/utils";
+
+.paragraph {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0;
+}
+
+.line {
+  display: block;
+  width: 100%;
+}
+
+.wordsContainer {
+  display: inline-flex;
+  flex-wrap: wrap; /* Ensures words are on separate lines if needed */
+}
+
+.word {
+  display: inline-block;
+}
+
+.char {
+  display: inline-block;
+}

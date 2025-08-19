@@ -1,0 +1,65 @@
+@font-face {
+  font-family: "Aeonik Medium";
+  src: url("@fonts/Aeonik-Medium.woff") format("woff"),
+    url("@fonts/Aeonik-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Aeonik Regular";
+  src: url("@fonts/Aeonik-Regular.woff") format("woff"),
+    url("@fonts/Aeonik-Regular.woff2") format("woff2");
+}
+
+$font-medium: "Aeonik Medium", sans-serif;
+$font-regular: "Aeonik Regular", sans-serif;
+
+$radius-md: 15px;
+$radius-slg: 2.5rem;
+$radius-lg: 4rem;
+$full-radius: 250px;
+
+@mixin defaultUl() {
+  margin: 0 0;
+  padding: 0 0;
+  list-style: none;
+}
+
+@mixin defaultFont($type: normal) {
+  font-weight: $type;
+  font-style: $type;
+}
+
+@mixin spacing($space: normal) {
+  letter-spacing: $space;
+}
+
+@mixin lineHeight($height: 100%) {
+  line-height: $height;
+}
+
+@mixin align($align: left) {
+  @if $align == "center" {
+    display: block;
+    margin: 0 auto;
+  }
+  @if $align == "flex-center" {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@mixin animation($type) {
+  @if $type == "primary" {
+    transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  @if $type == "fast" {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0, 1);
+  }
+  @if $type == "superfast" {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0, 1);
+  }
+  @if $type == "slow" {
+    transition: all 1.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}

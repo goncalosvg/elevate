@@ -1,0 +1,13 @@
+.container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  border-radius: 250px;
+  background-color: white;
+  transform: translate(-50%, -50%);
+}

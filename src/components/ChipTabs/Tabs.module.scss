@@ -1,0 +1,41 @@
+@use "@styles/@root/colors";
+@use "@styles/@root/utils";
+
+.wrap {
+  width: max-content;
+  padding: 3px;
+  background: #DFDFDF;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 250px;
+
+  .tab {
+    position: relative;
+    background: transparent;
+    padding: 6px 15px;
+    color: colors.$dark-title;
+    font-family: utils.$font-medium;
+    font-size: 14px;
+    font-weight: 700;
+    border: 0;
+    border-radius: 250px;
+    outline: 0;
+    @include utils.spacing(-0.3px);
+    @include utils.animation(superfast);
+  }
+  .pill {
+    background-color: colors.$background;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 250px;
+    z-index: 0;
+  }
+  .text {
+    position: relative;
+    z-index: 10;
+  }
+}

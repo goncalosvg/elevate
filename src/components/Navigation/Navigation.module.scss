@@ -1,0 +1,266 @@
+@use "~/styles/@root/colors";
+@use "~/styles/@root/utils";
+
+#nav {
+  width: 100%;
+  padding: 2rem 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  z-index: 11;
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .left {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      .logo {
+        width: 110px;
+        height: auto;
+      }
+    }
+    .right {
+      width: 50%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .items {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    @include utils.defaultUl();
+
+    .item {
+      position: relative;
+      padding-right: 1px;
+      color: colors.$title;
+      font-family: utils.$font-regular;
+      font-size: 16px;
+      cursor: pointer;
+      overflow: visible;
+      
+      span {
+        display: inline-block;
+        transition: none;
+      }
+    }
+  }
+  .menu {
+    width: 50px;
+    color: colors.$title;
+    position: relative;
+    font-family: utils.$font-medium;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    display: none;
+    overflow: visible;
+  }
+  &.dark {
+    .items {
+      .item {
+        color: colors.$title;
+      }
+    }
+    .menu {
+      color: colors.$title;
+    }
+  }
+}
+
+#fixedMenu {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  background-color: colors.$background;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  @include utils.animation(fast);
+  transition-delay: 0.3s;
+  z-index: 10;
+
+  .items {
+    @include utils.defaultUl();
+    display: flex;
+    flex-direction: column;
+    margin-top: 8rem;
+
+    .item {
+      width: 100%;
+      padding: 20px 0;
+      position: relative;
+      color: colors.$dark-title;
+      font-family: utils.$font-medium;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -1px;
+      display: block;
+      border-bottom: 1px solid colors.$border;
+    }
+  }
+  &.active {
+    transform: translateX(0%);
+  }
+}
+
+#fixednav {
+  width: 900px;
+  padding: 16px 0;
+  background: rgba(255, 255, 255, 0.4);
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  border-radius: 250px;
+  transform: translateY(-150%) translateX(-50%);
+  backdrop-filter: blur(30px);
+  @include utils.animation(primary);
+  animation: fadeIn 0.3s forwards;
+  animation-delay: 1s;
+  z-index: 7;
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .left {
+      width: 30%;
+      .logo {
+        width: 150px;
+        height: auto;
+      }
+    }
+    .center {
+      width: 40%;
+      display: flex;
+      justify-content: center;
+    }
+    .right {
+      width: 30%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .items {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    @include utils.defaultUl();
+
+    .item {
+      width: max-content;
+      position: relative;
+      color: colors.$dark-title;
+      font-family: utils.$font-medium;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: -1px;
+      cursor: pointer;
+      overflow: visible;
+      
+      span {
+        display: inline-block;
+        transition: none;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1px) and (max-width: 767px) {
+  #nav {
+    .content {
+      .left {
+        .logo {
+          width: 100px;
+        }
+      }
+      .center {
+        display: none;
+      }
+      .right {
+        width: 20%;
+        button {
+          display: none;
+        }
+        .menu {
+          display: block;
+        }
+      }
+    }
+  }
+  #fixednav {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  #nav {
+    .content {
+      .left {
+        display: none;
+      }
+      .center {
+        width: 80%;
+        justify-content: flex-start;
+        .logo {
+          width: 110px;
+        }
+      }
+      .right {
+        width: 20%;
+        .items {
+          display: none;
+        }
+        .menu {
+          display: block;
+        }
+      }
+    }
+  }
+  #fixednav {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+  #nav {
+    .content {
+      .items {
+        .item {
+          font-size: 16px;
+          &[data-quantity] {
+            &::before {
+              font-size: 12px;
+              padding: 2px 7px;
+            }
+          }
+        }
+      }
+      .btn {
+        display: none;
+      }
+    }
+  }
+}

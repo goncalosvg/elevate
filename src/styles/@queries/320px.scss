@@ -1,0 +1,445 @@
+@use "@styles/@root/colors";
+@use "@styles/@root/utils";
+
+@media only screen and (min-width: 1px) and (max-width: 767px) {
+  #hero {
+    .title {
+      .ratings {
+        .pictures {
+          width: 42px;
+        }
+        .rating {
+          font-size: 14px;
+          letter-spacing: -0.2px;
+        }
+      }
+      .heading {
+        font-size: 48px;
+        letter-spacing: -5px;
+      }
+      p {
+        width: 100%;
+        font-size: 14px;
+      }
+      .featured {
+        display: none;
+      }
+      .logo {
+        height: 18px;
+      }
+    }
+  }
+  /* SERVICES */
+  #services {
+    padding: 4rem 0;
+    .title {
+      flex-direction: column;
+      margin-bottom: 3rem;
+      .heading {
+        font-size: 48px;
+        letter-spacing: -5px;
+      }
+      p {
+        width: 100%;
+        font-size: 16px;
+      }
+    }
+    .card {
+      height: auto;
+      padding: 30px 40px;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      .content {
+        width: 100%;
+        .heading {
+          font-size: 35px;
+          letter-spacing: -3px;
+        }
+        .subheading {
+          font-size: 16px;
+          letter-spacing: -0.6px;
+        }
+        p {
+          width: 100%;
+          font-size: 16px;
+        }
+      }
+      .wrap {
+        width: 100%;
+        height: 100px;
+        background-image: url('/fullmanagement-card-mobile.png');
+        background-position: top center;
+      }
+      &.secondary {
+        .wrap {
+          background-image: url('/chatting-card-mobile.png');
+        }
+      }
+    }
+  }
+  /* DIAGRAM */
+  #diagram {
+    padding: 3rem 0 5rem 0;
+    .centerCard {
+      margin: 5rem 0;
+    }
+    .center {
+      position: relative;
+  
+      &::before {
+        content: "";
+        width: 2px;
+        height: 100%;
+        background: colors.$border;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    .stroke {
+      width: 105.5%;
+      position: relative;
+      overflow: hidden;
+      transform: translateX(-10px);
+    
+      &::before {
+        content: "";
+        width: 2px;
+        height: 205%;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        background-image: repeating-linear-gradient(
+          to bottom,
+          #56A3E8 0px,
+          #56A3E8 10px,
+          transparent 10px,
+          transparent 20px
+        );
+        transform: translateX(-50%);
+        animation: strokeFlow 8s linear infinite;
+      }
+    
+      @keyframes strokeFlow {
+        0% {
+          top: -100%;
+        }
+        100% {
+          top: 0%;
+        }
+      }
+    }
+  }
+  /* FLAGS */
+  #flags {
+    .title {
+      margin-bottom: 3rem;
+      .subtitle {
+        font-size: 16px;
+      }
+      .heading {
+        font-size: 48px;
+        letter-spacing: -5px;
+      }
+    }
+    .card {
+      margin-bottom: 1rem;
+      .card-title {
+        .heading {
+          font-size: 16px;
+          letter-spacing: -0.5px;
+        }
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+    .growth {
+      text-align: center;
+    }
+  }
+  /* STATISTICS */
+  #statistics {
+    padding: 3rem 0;
+    background-size: 250%;
+    .card {
+      width: 100%;
+      padding-bottom: 3rem;
+      .heading {
+        font-size: 35px;
+        letter-spacing: -2px;
+      }
+      p {
+        font-size: 16px;
+        letter-spacing: -0.2px;
+      }
+    }
+  }
+  /* FEATURES */
+  #features {
+    padding: 2rem 0;
+    margin-top: -1px;
+    .logo {
+      height: 25px;
+      margin-right: 1rem;
+    }
+  }
+  /* DESCRIBED SERVICES */
+  #describedservices {
+    .card {
+      margin-bottom: 2rem;
+      .heading {
+        font-size: 22px;
+      }
+    }
+  }
+  /* TESITMONIALS */
+  #testimonials {
+    padding: 2rem 0;
+    .title {
+      margin-bottom: 3rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.2rem;
+      .heading {
+        font-size: 48px;
+        letter-spacing: -5px;
+      }
+    }
+    .card {
+      flex-direction: column;
+      gap: 0;
+      height: auto;
+      margin-bottom: 2rem;
+      .content {
+        gap: 1rem;
+        .tag {
+          font-size: 14px;
+        }
+        p {
+          font-size: 20px;
+        }
+        .name {
+          font-size: 16px;
+        }
+        .rated {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  /* RESULTS */
+  #results {
+    padding: 2rem 0;
+    .title {
+      margin-bottom: 3rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.2rem;
+      .heading {
+        font-size: 48px;
+        letter-spacing: -5px;
+      }
+      p {
+        font-size: 16px;
+        text-align: left;
+      }
+    }
+  }
+  /* FAQ */
+  #faq {
+    padding: 3rem 0 5rem 0;
+    .title {
+      margin-bottom: 3rem;
+      .heading {
+        font-size: 48px;
+        text-align: left;
+        letter-spacing: -5px;
+      }
+    }
+  }
+  /* CHATTING */
+  #chatting {
+    .title {
+      .heading {
+        font-size: 48px;
+        letter-spacing: -5px;
+      }
+      p {
+        width: 100%;
+        font-size: 16px;
+        letter-spacing: -0.5px;
+      }
+    }
+    .footer {
+      .left,
+      .right {
+        display: none;
+      }
+      .message {
+        display: none;
+      }
+    }
+  }
+  /* CALCULATOR */
+  #calculator {
+    padding: 5rem 0 0 0;
+    .title {
+      margin-bottom: 3rem;
+      .subtitle {
+        font-size: 16px;
+      }
+      .heading {
+        font-size: 48px;
+        letter-spacing: -5px;
+      }
+    }
+    .card {
+      padding: 25px 25px 35px 25px;
+      margin-bottom: 1rem;
+      .content {
+        .cardTitle {
+          .text {
+            font-size: 20px;
+          }
+          .count {
+            font-size: 20px;
+          }
+          .number {
+            font-size: 20px;
+            letter-spacing: -1px;
+          }
+        }
+        .numbersCard {
+          padding: 20px 15px;
+          .stat {
+            font-size: 35px;
+          }
+          .text {
+            font-size: 14px;
+            letter-spacing: -0.3px;
+          }
+        }
+      }
+    }
+  }
+  /* FEATURES */
+  #chatting-features {
+    padding: 5rem 0 10rem 0;
+    .title {
+      margin-bottom: 1rem;
+      .heading {
+        font-size: 48px;
+        letter-spacing: -5px;
+      }
+      p {
+        width: 100%;
+        font-size: 16px;
+        letter-spacing: -0.5px;
+      }
+    }
+  }
+  /* PROCESS */
+  #process {
+    padding: 3rem 0;
+    .title {
+      margin-bottom: 3rem;
+      .heading {
+        font-size: 48px;
+        letter-spacing: -5px;
+      }
+    }
+    .card {
+      padding: 25px;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      .heading {
+        font-size: 22px;
+        letter-spacing: -1px;
+      }
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+  /* REFER */
+  #refer {
+    .card {
+      padding: 30px 50px;
+      .title {
+        .heading {
+          font-size: 40px;
+          letter-spacing: -3px;
+          br {
+            display: none;
+          }
+        }
+        p {
+          width: 100%;
+          font-size: 16px;
+        }
+      }
+      .items {
+        width: 100%;
+        .itemHeading {
+          font-size: 20px;
+        }
+      }
+      .stats {
+        display: none;
+      }
+    }
+  }
+  /* GLOBALS */
+  .col-md-3,
+  .col-md-4,
+  .col-md-6 {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 100%;
+  }
+  
+  .col-sm-4 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .col-sm-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+  .mb-only {
+    display: block !important;
+  }
+  .mgtop-xl {
+    margin-top: 3rem;
+  }
+  .mgtop-xlg {
+    margin-top: 5rem;
+  }
+  .h-mgbottom-xxl {
+    height: 5rem;
+  }
+  .mb-v-center {
+    align-items: center;
+  }
+  .iconWrap {
+    width: 50px;
+    height: 50px;
+  
+    .icon {
+      width: 90%;
+    }
+    &.sm {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}

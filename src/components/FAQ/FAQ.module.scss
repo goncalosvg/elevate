@@ -1,0 +1,95 @@
+@use "@styles/@root/colors";
+@use "@styles/@root/utils";
+
+.accordion {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.accordionItem {
+  border-bottom: 1px solid colors.$border;
+  overflow: hidden;
+
+  &.active .accordionHeader .icon {
+    transform: rotate(45deg);
+  }
+}
+
+.accordionHeader {
+  width: 100%;
+  padding: 1.2rem 1.5rem;
+  background: transparent;
+  color: colors.$title;
+  font-family: utils.$font-medium;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0;
+  cursor: pointer;
+}
+
+.icon {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  transition: transform 0.6s ease-in-out;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: colors.$title;
+    border-radius: 1px;
+  }
+
+  &::before {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &::after {
+    width: 2px;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.accordionContent {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.6s ease-in-out, opacity 0.3s ease-in-out;
+
+  .active & {
+    max-height: 800px;
+    opacity: 1;
+  }
+}
+
+.accordionBody {
+  padding: 0.5rem 1.5rem 2rem 1.5rem;
+  color: colors.$text;
+  font-family: utils.$font-medium;
+  font-size: 18px;
+  @include utils.lineHeight(140%);
+}
+
+@media only screen and (min-width: 1px) and (max-width: 767px) {
+  .accordionHeader {
+    font-size: 16px;
+    letter-spacing: -0.5px;
+  }
+  .accordionBody {
+    font-size: 16px;
+  }
+}

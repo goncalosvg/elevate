@@ -1,0 +1,77 @@
+@use "@styles/@root/colors.scss";
+@use "@styles/@root/utils.scss";
+
+.btn {
+  width: max-content;
+  padding: 10px 20px;
+  background: colors.$btn-background;
+  color: colors.$dark-title;
+  font-family: utils.$font-medium;
+  border: 0;
+  outline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  border-radius: 250px;
+  overflow: hidden;
+  @include utils.animation(primary);
+
+  &.primary-small {
+    padding: 8px 15px;
+  }
+  &.main {
+    background: colors.$accent;
+    color: colors.$dark-title;
+    border: 1px solid colors.$accent-border;
+    box-shadow: 0px -2px 4px #BFFB4F inset, 0px 3px 4px #ccff6d inset, 0px 5px 20px rgba(191, 251, 79, 0.4);
+
+    &:hover {
+      box-shadow: 0px -2px 4px #BFFB4F inset, 0px 3px 4px #ccff6d inset, 0px 8px 25px rgba(191, 251, 79, 0.4);
+    }
+  }
+  &.primary-price {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 16px;
+  }
+  &.main-graphic {
+    padding: 8px 15px;
+    background: colors.$accent;
+    color: colors.$dark-title;
+    border: 1px solid colors.$accent-border;
+    box-shadow: 0px -2px 4px #BFFB4F inset, 0px 3px 4px #ccff6d inset, 0px 5px 20px rgba(191, 251, 79, 0.5);
+
+    &:hover {
+      box-shadow: 0px -2px 4px #BFFB4F inset, 0px 3px 4px #ccff6d inset, 0px 8px 25px rgba(191, 251, 79, 0.2);
+    }
+  }
+  &.end {
+    padding: 8px 15px;
+    background: #fb4f4f;
+    color: colors.$dark-title;
+    border: 1px solid #ff6d6d;
+    box-shadow: 0px -2px 4px #fb4f4f inset, 0px 3px 4px #ff6d6d inset, 0px 5px 20px rgba(251, 79, 79, 0.5);
+
+    &:hover {
+      box-shadow: 0px -2px 4px #fb4f4f inset, 0px 3px 4px #ff6d6d inset, 0px 8px 25px rgba(251, 79, 79, 0.2);
+    }
+  }
+  &.secondary {
+    background: colors.$card;
+    color: colors.$title;
+    border: 1px solid colors.$border;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+
+@media only screen and (min-width: 1px) and (max-width: 767px) {
+  .btn {
+    padding: 10px 22px;
+    font-size: 14px;
+  }
+}
