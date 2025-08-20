@@ -85,9 +85,11 @@
 }
 
 @media only screen and (min-width: 1px) and (max-width: 767px) {
+  .accordion {
+    width: 100%;
+  }
   .accordionHeader {
     font-size: 16px;
-    letter-spacing: -0.5px;
   }
   .accordionBody {
     font-size: 16px;

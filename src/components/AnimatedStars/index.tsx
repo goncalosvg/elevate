@@ -49,7 +49,7 @@ export default function AnimatedStars() {
   }, [])
 
   return (
-    <div className={clsx(styles.container, 'fade-in')} data-delay="0.5">
+    <div className={clsx(styles.container, 'fade-in', 'desktop-only')} data-delay="0.5">
       {stars.map((star) => (
         <div
           key={star.id}

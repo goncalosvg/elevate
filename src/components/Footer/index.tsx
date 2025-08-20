@@ -17,6 +17,7 @@ export default function Footer() {
                   <HugeiconsIcon
                     icon={NewTwitterIcon}
                     size={20}
+                    className={styles.icon}
                     color="#ffffff"
                     strokeWidth={1.5}
                   />

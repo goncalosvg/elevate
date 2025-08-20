@@ -191,22 +191,18 @@
 @media only screen and (min-width: 1px) and (max-width: 767px) {
   #nav {
     .content {
+      width: 100%;
       .left {
+        width: 50%;
         .logo {
           width: 100px;
         }
-      }
-      .center {
-        display: none;
-      }
-      .right {
-        width: 20%;
-        button {
+        .items {
           display: none;
         }
-        .menu {
-          display: block;
-        }
+      }
+      .right {
+        width: 50%;
       }
     }
   }

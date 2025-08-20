@@ -14,6 +14,8 @@ import AnimatedStars from "~/components/AnimatedStars";
 import { Button } from "~/components/Button";
 import TextReveal from "~/components/Text/TextReveal";
 
+import Marquee from "react-fast-marquee";
+
 import {
   CallRinging04Icon,
   InternetAntenna01Icon,
@@ -23,6 +25,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
+import Carousel from "~/components/Carousel";
 import FadeIn from "~/components/FadeIn";
 import FAQAccordion from "~/components/FAQ";
 import Footer from "~/components/Footer";
@@ -84,7 +87,10 @@ export default function Home() {
           name="description"
           content="Join a private network of top-tier crypto traders, founders, and analysts. Get exclusive insights, real-time strategies, marketplace rewards, and direct access to proven experts in the crypto space."
         />
-        <meta name="keywords" content="crypto trading community, crypto discord, trading signals, crypto experts, memecoin trading, blockchain analysis, crypto marketplace, trading education" />
+        <meta
+          name="keywords"
+          content="crypto trading community, crypto discord, trading signals, crypto experts, memecoin trading, blockchain analysis, crypto marketplace, trading education"
+        />
         <link rel="canonical" href="https://elevate.com" />
 
         <meta property="og:type" content="website" />
@@ -156,7 +162,7 @@ export default function Home() {
                   >
                     <span className="text">Our Partners</span>
                   </FadeIn>
-                  <div className="logos">
+                  <div className="logos desktop-only">
                     <FadeIn
                       direction="up"
                       delay={0.6}
@@ -283,6 +289,98 @@ export default function Home() {
               <div className="glass"></div>
             </div>
           </div>
+          <Marquee className="marquee mobile-only">
+            <FadeIn
+              direction="up"
+              delay={0.6}
+              distance={10}
+              duration={1.5}
+              hasBlur
+            >
+              <Image
+                width={500}
+                height={100}
+                className="logo"
+                src="/companies/coinbase.png"
+                alt="partner"
+              />
+            </FadeIn>
+            <FadeIn
+              direction="up"
+              delay={0.8}
+              distance={10}
+              duration={1.5}
+              hasBlur
+            >
+              <Image
+                width={500}
+                height={100}
+                className="logo"
+                src="/companies/zoomex.png"
+                alt="partner"
+              />
+            </FadeIn>
+            <FadeIn
+              direction="up"
+              delay={1}
+              distance={10}
+              duration={1.5}
+              hasBlur
+            >
+              <Image
+                width={500}
+                height={100}
+                className="logo large"
+                src="/companies/axiomexchange.png"
+                alt="partner"
+              />
+            </FadeIn>
+            <FadeIn
+              direction="up"
+              delay={1.2}
+              distance={10}
+              duration={1.5}
+              hasBlur
+            >
+              <Image
+                width={500}
+                height={100}
+                className="logo"
+                src="/companies/bloom.png"
+                alt="partner"
+              />
+            </FadeIn>
+            <FadeIn
+              direction="up"
+              delay={1.4}
+              distance={10}
+              duration={1.5}
+              hasBlur
+            >
+              <Image
+                width={500}
+                height={100}
+                className="logo"
+                src="/companies/bybit.png"
+                alt="partner"
+              />
+            </FadeIn>
+            <FadeIn
+              direction="up"
+              delay={1.6}
+              distance={10}
+              duration={1.5}
+              hasBlur
+            >
+              <Image
+                width={500}
+                height={100}
+                className="logo"
+                src="/companies/photon.png"
+                alt="partner"
+              />
+            </FadeIn>
+          </Marquee>
           <AnimatedStars />
           <Image
             width={1920}
@@ -342,7 +440,7 @@ export default function Home() {
                 align="center"
               />
             </div>
-            <div className="row">
+            <div className="row desktop-only">
               <div className="col-md-4">
                 <motion.div
                   className="card"
@@ -671,6 +769,326 @@ export default function Home() {
                 </motion.div>
               </div>
             </div>
+            <Carousel>
+              <motion.div
+                className="card"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: 0.1 }}
+              >
+                <div className="content">
+                  <h3 className="heading">Marketplace</h3>
+                  <p className="paragraph">
+                    Earn points by doing reps, engaging with tweets, or hopping
+                    on calls — then redeem them for rewards like free SOL,
+                    reposts from top providers, free memberships, exclusive
+                    items, and more.
+                  </p>
+                </div>
+                <div className="graphic">
+                  <div className="marketplace">
+                    <ul className="items">
+                      <li className="item">
+                        <div className="left">
+                          <h4 className="heading">27 SOL</h4>
+                          <p className="text">Collect your free SOL</p>
+                        </div>
+                        <Button variant="main-graphic">Redeem</Button>
+                      </li>
+                      <li className="item">
+                        <div className="left">
+                          <h4 className="heading">Membership</h4>
+                          <p className="text">Redeem a free membership</p>
+                        </div>
+                        <Button variant="main-graphic">Redeem</Button>
+                      </li>
+                      <li className="item">
+                        <div className="left">
+                          <h4 className="heading">More items</h4>
+                          <p className="text">Get more items!</p>
+                        </div>
+                        <Button variant="primary-small">See more</Button>
+                      </li>
+                    </ul>
+                  </div>
+                  <Image
+                    width={1920}
+                    height={1080}
+                    className="coin"
+                    src="/crypto_coin.png"
+                    alt=""
+                  />
+                </div>
+              </motion.div>
+              <motion.div
+                className="card"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: 0.2 }}
+              >
+                <div className="content">
+                  <h3 className="heading">X, IG, Truth Tracker</h3>
+                  <p className="paragraph">
+                    Updated daily with 500+ of the best Influencers, Crypto
+                    natives, Political figures, and relevant accounts in the
+                    space.
+                  </p>
+                </div>
+                <div className="graphic">
+                  <div className="tracker">
+                    <div className="w-full flex h-center">
+                      <div className="track">
+                        <HugeiconsIcon
+                          icon={InternetAntenna01Icon}
+                          size={34}
+                          color="#000000"
+                          strokeWidth={1.5}
+                        />
+                      </div>
+                    </div>
+                    <ul className="items">
+                      <li className="item" data-step={getStepForItem(0)}>
+                        <div className="left">
+                          <h4 className="heading">@MarcellxMarcell</h4>
+                          <p className="text">
+                            Marcel just replied to an X post
+                          </p>
+                        </div>
+                        <Button variant="primary-small">See more</Button>
+                      </li>
+                      <li className="item" data-step={getStepForItem(1)}>
+                        <div className="left">
+                          <h4 className="heading">@Cupseyy</h4>
+                          <p className="text">
+                            Cupsey posted an Instagram Reel
+                          </p>
+                        </div>
+                        <Button variant="primary-small">See more</Button>
+                      </li>
+                      <li className="item" data-step={getStepForItem(2)}>
+                        <div className="left">
+                          <h4 className="heading">@daumeneth</h4>
+                          <p className="text">Daumeneth posted a Thread on X</p>
+                        </div>
+                        <Button variant="main-graphic">See more</Button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
+              <motion.div
+                className="card"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: 0.3 }}
+              >
+                <div className="content">
+                  <h3 className="heading">1 on 1 calls & messages</h3>
+                  <p className="paragraph">
+                    Choose a time and date, write a quick brief, and schedule a
+                    private one on one call with any of our providers.
+                  </p>
+                  <div className="graphic">
+                    <div className="calls">
+                      <div className="call">
+                        <div className="avatar">
+                          <span className="initials">GM</span>
+                        </div>
+                        <div className="line"></div>
+                        <div className="ring">
+                          <HugeiconsIcon
+                            icon={CallRinging04Icon}
+                            size={34}
+                            className="icon"
+                            color="#000000"
+                            strokeWidth={1.5}
+                          />
+                        </div>
+                        <div className="line"></div>
+                        <div className="avatar">
+                          <span className="initials">ZK</span>
+                        </div>
+                      </div>
+                      <div className="status">
+                        <div className="flex dir-column">
+                          <span className="time">12:43</span>
+                          <span className="text">
+                            Crypto talk with Provider
+                          </span>
+                        </div>
+                        <Button variant="end">End call</Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+              <motion.div
+                className="card"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: 0.4 }}
+              >
+                <div className="content">
+                  <h3 className="heading">Support</h3>
+                  <p className="paragraph">
+                    24/7 around the clock support team waiting to answer your
+                    questions / concerns.
+                  </p>
+                </div>
+                <div className="graphic">
+                  <div className="support">
+                    <ul className="items">
+                      <li className="item">
+                        <div className="avatar">
+                          <span className="initials">GM</span>
+                        </div>
+                        <div className="right">
+                          <span className="name">John Doe</span>
+                          <span className="message">
+                            Hey! How do I upgrade my membership?
+                          </span>
+                        </div>
+                      </li>
+                      <li className="item you">
+                        <div className="avatar">
+                          <span className="initials">GM</span>
+                        </div>
+                        <div className="right">
+                          <span className="name">John Doe</span>
+                          <span className="message">
+                            Hey! How do I upgrade my membership?
+                          </span>
+                        </div>
+                      </li>
+                    </ul>
+                    <div className="input">
+                      <span className="text">Send a message to support...</span>
+                      <Button variant="main-graphic">Send</Button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+              <motion.div
+                className="card"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: 0.5 }}
+              >
+                <div className="content">
+                  <h3 className="heading">Streams</h3>
+                  <p className="paragraph">
+                    Daily / Weekly trenching and perp livestreams and discussion
+                    with Marcell, Cupsey, Daumen... and many more!
+                  </p>
+                </div>
+                <div className="graphic">
+                  <div className="streams">
+                    <div className="stream">
+                      <div className="live">
+                        <HugeiconsIcon
+                          icon={LiveStreaming01Icon}
+                          size={34}
+                          color="#000000"
+                          strokeWidth={1.5}
+                        />
+                      </div>
+                      <div>
+                        <span className="text">You're live!</span>
+                        <span className="description">
+                          Let's talk about Tokenomics
+                        </span>
+                      </div>
+                    </div>
+                    <div className="screen">
+                      <div className="avatar">
+                        <span className="initials">GM</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+              <motion.div
+                className="card"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: 0.6 }}
+              >
+                <div className="content">
+                  <h3 className="heading">Elevate Custom Bots</h3>
+                  <p className="paragraph">
+                    Take advantage of our tools; volume tracker, rep system,
+                    marketplace, twitter tracker, migration bot, insider
+                    activity, and more.
+                  </p>
+                </div>
+                <div className="graphic">
+                  <div className="bots">
+                    <ul className="items">
+                      <li className="item">
+                        <p className="text">Volume</p>
+                        <h4 className="heading">150M+</h4>
+                      </li>
+                      <li className="item separate">
+                        <p className="text">Twitter Engagement</p>
+                        <h4 className="heading">Very High</h4>
+                      </li>
+                      <li className="item">
+                        <p className="text">Migration Status</p>
+                        <h4 className="heading">In Progress</h4>
+                      </li>
+                    </ul>
+                    <svg
+                      width="400"
+                      height="238"
+                      viewBox="0 0 400 238"
+                      className="chart"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M-129.529 184.517L-137 182.654V246H536.282V1L531.613 3.79468L523.209 25.2205L518.54 28.9468L510.136 27.0836L500.797 17.7681L495.194 18.6996L486.79 39.1939L481.187 52.2357H473.717L466.246 40.1255L461.238 39.1939H455.974L445.702 69.0038L442.901 70.8669L438.232 72.73L433.562 66.2091L426.092 27.0836L421.423 22.4259L416.754 24.289L407.416 55.962L401.813 59.6882L391.541 54.0989L385.938 49.4411H378.467L370.997 67.1407L366.328 73.6616L356.989 75.5247L349.519 84.8403L344.85 86.7034L340.181 84.8403L329.909 60.6198L321.504 58.7567L311.232 83.9087L307.497 87.635L301.894 86.7034L290.688 70.8669L282.284 69.9354L275.747 59.6882L271.078 52.2357L266.409 50.3726L262.674 53.1673L253.336 88.5665L250.534 94.1559L246.799 95.0874L242.13 85.7719L232.792 36.3992L229.99 32.673H228.123L223.454 35.4677L215.983 63.4144L212.248 69.0038L204.777 70.8669L195.439 89.4981L192.638 92.2928H187.968L182.366 88.5665L176.763 80.1825L172.094 78.3194L164.623 82.9772L159.954 98.8137L155.285 104.403L150.616 106.266L142.211 101.608L135.675 96.019L129.138 95.0874L126.336 92.2928L118.866 82.0456L114.197 79.2509L109.528 82.0456L102.057 122.103L96.4543 137.008H90.8514L82.4471 126.76L77.778 124.897L70.3074 123.966L63.7707 137.939L57.234 145.392L53.4987 146.323L46.0282 135.144L37.6238 130.487L32.0209 132.35L20.8151 174.27L16.146 176.133L8.67549 168.681L-1.59648 161.228H-6.26558L-11.8685 154.707L-20.2728 151.913L-25.8757 154.707L-33.3463 177.996L-40.8168 182.654L-45.4859 184.517L-52.0226 187.312L-62.2946 189.175L-67.8975 184.517L-74.4343 174.27L-82.8386 172.407L-90.3092 166.817L-96.8459 163.091L-100.581 164.023L-104.316 171.475L-111.787 189.175L-116.456 192.901L-122.059 191.97L-129.529 184.517Z"
+                        fill="url(#paint0_linear_93_338)"
+                      />
+                      <path
+                        d="M536.283 1C526.664 1 526.664 29.4931 517.046 29.4931C507.428 29.4931 507.829 17.5362 497.809 17.5362C487.79 17.5362 488.592 52.6437 478.573 52.6437C468.554 52.6437 470.157 38.5498 459.336 38.5498C448.516 38.5498 451.321 72.7924 440.1 72.7924C428.878 72.7924 430.481 22.3698 420.863 22.3698C411.245 22.3698 412.046 59.1564 401.626 59.1564C391.206 59.1564 392.809 49.0821 382.39 49.0821C371.97 49.0821 373.573 74.2679 363.153 74.2679C352.733 74.2679 353.935 86.4792 343.916 86.4792C333.897 86.4792 334.699 59.0038 324.68 59.0038C314.661 59.0038 315.863 87.9039 305.443 87.9039C295.023 87.9039 297.428 70.4519 286.206 70.4519C274.985 70.4519 276.989 51.0155 266.97 51.0155C256.951 51.0155 258.153 95.3833 247.733 95.3833C237.313 95.3833 238.916 32.0371 228.496 32.0371C218.077 32.0371 219.279 69.8922 209.26 69.8922C199.241 69.8922 201.245 92.534 190.023 92.534C178.802 92.534 181.607 78.7963 170.787 78.7963C159.966 78.7963 162.771 106.781 151.55 106.781C140.329 106.781 143.134 95.9939 132.313 95.9939C121.493 95.9939 123.496 79.6613 113.077 79.6613C102.657 79.6613 104.26 138.326 93.84 138.326C83.4202 138.326 85.8247 123.978 74.6033 123.978C63.382 123.978 64.985 146.416 55.3667 146.416C45.7484 146.416 46.9507 130.389 36.13 130.389C25.3094 130.389 26.9125 176.69 16.8934 176.69C6.87434 176.69 8.87817 162.749 -2.3432 162.749C-13.5646 162.749 -10.7592 152.624 -21.5798 152.624C-32.4004 152.624 -30.3967 183.661 -40.8165 183.661C-51.2364 183.661 -48.8318 190.174 -60.0531 190.174C-71.2745 190.174 -68.0684 173.027 -79.2898 173.027C-90.5111 173.027 -88.9081 163.868 -98.5264 163.868C-108.145 163.868 -108.145 193.634 -117.763 193.634C-127.381 193.634 -126.58 183.152 -137 183.152"
+                        stroke="#BFFB4F"
+                        strokeWidth="2"
+                        className="chart-line"
+                      />
+                      <defs>
+                        <linearGradient
+                          id="paint0_linear_93_338"
+                          x1="199.641"
+                          y1="1"
+                          x2="199.641"
+                          y2="246"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stop-color="#BFFB4F" stop-opacity="0.12" />
+                          <stop
+                            offset="1"
+                            stop-color="#BFFB4F"
+                            stop-opacity="0"
+                          />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+                </div>
+              </motion.div>
+            </Carousel>
             <div className="footer">
               <p className="text">
                 Join a private network of top-tier traders, founders, and
@@ -1740,6 +2158,7 @@ That's how Elevate was born.
                           <HugeiconsIcon
                             icon={Tick01Icon}
                             size={16}
+                            className="tick"
                             color="#000000"
                             strokeWidth={3}
                           />
@@ -1751,6 +2170,7 @@ That's how Elevate was born.
                           <HugeiconsIcon
                             icon={Tick01Icon}
                             size={16}
+                            className="tick"
                             color="#000000"
                             strokeWidth={3}
                           />
@@ -1762,6 +2182,7 @@ That's how Elevate was born.
                           <HugeiconsIcon
                             icon={Tick01Icon}
                             size={16}
+                            className="tick"
                             color="#000000"
                             strokeWidth={3}
                           />
@@ -1775,6 +2196,7 @@ That's how Elevate was born.
                           <HugeiconsIcon
                             icon={Tick01Icon}
                             size={16}
+                            className="tick"
                             color="#000000"
                             strokeWidth={3}
                           />
@@ -1786,6 +2208,7 @@ That's how Elevate was born.
                           <HugeiconsIcon
                             icon={Tick01Icon}
                             size={16}
+                            className="tick"
                             color="#000000"
                             strokeWidth={3}
                           />
@@ -1799,6 +2222,7 @@ That's how Elevate was born.
                           <HugeiconsIcon
                             icon={Tick01Icon}
                             size={16}
+                            className="tick"
                             color="#000000"
                             strokeWidth={3}
                           />
@@ -1843,6 +2267,7 @@ That's how Elevate was born.
                           <HugeiconsIcon
                             icon={Tick01Icon}
                             size={16}
+                            className="tick"
                             color="#000000"
                             strokeWidth={3}
                           />
@@ -1856,6 +2281,7 @@ That's how Elevate was born.
                           <HugeiconsIcon
                             icon={Tick01Icon}
                             size={16}
+                            className="tick"
                             color="#000000"
                             strokeWidth={3}
                           />
@@ -1869,6 +2295,7 @@ That's how Elevate was born.
                           <HugeiconsIcon
                             icon={Tick01Icon}
                             size={16}
+                            className="tick"
                             color="#000000"
                             strokeWidth={3}
                           />
@@ -1882,6 +2309,7 @@ That's how Elevate was born.
                           <HugeiconsIcon
                             icon={Tick01Icon}
                             size={16}
+                            className="tick"
                             color="#000000"
                             strokeWidth={3}
                           />
@@ -1895,6 +2323,7 @@ That's how Elevate was born.
                           <HugeiconsIcon
                             icon={Tick01Icon}
                             size={16}
+                            className="tick"
                             color="#000000"
                             strokeWidth={3}
                           />
@@ -1908,6 +2337,7 @@ That's how Elevate was born.
                           <HugeiconsIcon
                             icon={Tick01Icon}
                             size={16}
+                            className="tick"
                             color="#000000"
                             strokeWidth={3}
                           />
@@ -1922,7 +2352,7 @@ That's how Elevate was born.
             </div>
             <div className="footer">
               <span className="text">Trusted by global companies</span>
-              <div className="logos">
+              <div className="logos desktop-only">
                 <FadeIn
                   delay={0}
                   direction="down"
@@ -2014,6 +2444,98 @@ That's how Elevate was born.
                   />
                 </FadeIn>
               </div>
+              <Marquee className="marquee mobile-only">
+                <FadeIn
+                  direction="up"
+                  delay={0.6}
+                  distance={10}
+                  duration={1.5}
+                  hasBlur
+                >
+                  <Image
+                    width={500}
+                    height={100}
+                    className="logo"
+                    src="/companies/coinbase.png"
+                    alt="partner"
+                  />
+                </FadeIn>
+                <FadeIn
+                  direction="up"
+                  delay={0.8}
+                  distance={10}
+                  duration={1.5}
+                  hasBlur
+                >
+                  <Image
+                    width={500}
+                    height={100}
+                    className="logo"
+                    src="/companies/zoomex.png"
+                    alt="partner"
+                  />
+                </FadeIn>
+                <FadeIn
+                  direction="up"
+                  delay={1}
+                  distance={10}
+                  duration={1.5}
+                  hasBlur
+                >
+                  <Image
+                    width={500}
+                    height={100}
+                    className="logo large"
+                    src="/companies/axiomexchange.png"
+                    alt="partner"
+                  />
+                </FadeIn>
+                <FadeIn
+                  direction="up"
+                  delay={1.2}
+                  distance={10}
+                  duration={1.5}
+                  hasBlur
+                >
+                  <Image
+                    width={500}
+                    height={100}
+                    className="logo"
+                    src="/companies/bloom.png"
+                    alt="partner"
+                  />
+                </FadeIn>
+                <FadeIn
+                  direction="up"
+                  delay={1.4}
+                  distance={10}
+                  duration={1.5}
+                  hasBlur
+                >
+                  <Image
+                    width={500}
+                    height={100}
+                    className="logo"
+                    src="/companies/bybit.png"
+                    alt="partner"
+                  />
+                </FadeIn>
+                <FadeIn
+                  direction="up"
+                  delay={1.6}
+                  distance={10}
+                  duration={1.5}
+                  hasBlur
+                >
+                  <Image
+                    width={500}
+                    height={100}
+                    className="logo"
+                    src="/companies/photon.png"
+                    alt="partner"
+                  />
+                </FadeIn>
+              </Marquee>
             </div>
           </div>
         </section>

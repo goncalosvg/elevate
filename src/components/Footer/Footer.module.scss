@@ -40,7 +40,7 @@
         @include utils.spacing(-0.5px);
         @include utils.animation(superfast);
         cursor: pointer;
-        
+
         &::before {
           content: "";
           width: 100%;
@@ -56,5 +56,30 @@
   .credit {
     width: 100%;
     height: auto;
+  }
+}
+
+@media only screen and (min-width: 1px) and (max-width: 767px) {
+  #footer {
+    padding-top: 10rem;
+    .items {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      flex-direction: column;
+      .item {
+        &.social {
+          width: 30px;
+          height: 30px;
+          .icon {
+            width: 16px;
+            height: auto;
+          }
+        }
+        .link {
+          font-size: 16px;
+          letter-spacing: 0;
+        }
+      }
+    }
   }
 }
