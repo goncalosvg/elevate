@@ -83,3 +83,40 @@
     }
   }
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  #footer {
+    padding-top: 10rem;
+    .items {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      .item {
+        &.social {
+          width: 30px;
+          height: 30px;
+          .icon {
+            width: 16px;
+            height: auto;
+          }
+        }
+        .link {
+          font-size: 16px;
+          letter-spacing: 0;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+  #footer {
+    padding-top: 8rem;
+    .items {
+      .item {
+        .link {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}

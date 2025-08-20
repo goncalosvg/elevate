@@ -2,5 +2,442 @@
 @use "@styles/@root/utils";
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
- 
+  #hero {
+    padding: 8rem 0 5rem 0;
+    overflow: hidden;
+    .content {
+      .title {
+        width: 500px;
+        .news {
+          .tag {
+            font-size: 12px;
+          }
+          .text {
+            font-size: 12px;
+          }
+        }
+        .heading {
+          font-size: 3.5rem;
+        }
+        .paragraph {
+          width: 100%;
+          font-size: 16px;
+          letter-spacing: -0.1px;
+        }
+        .footer {
+          margin: 3rem 0 1.5rem 0;
+          .text {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    .marquee {
+      position: relative;
+      overflow-y: hidden;
+      z-index: 6;
+    }
+    .logo {
+      width: auto;
+      height: 22px;
+      object-fit: contain;
+      margin-right: 1.5rem;
+      &.large {
+        height: 16px;
+      }
+    }
+    .mockupwrap {
+      display: none;
+    }
+    .noise {
+      width: 100%;
+      z-index: 5;
+    }
+    .shadow {
+      &.left {
+        top: -100%;
+      }
+      &.center {
+        top: -50%;
+      }
+      &.right {
+        top: -150%;
+      }
+    }
+  }
+  /* FEATURES */
+  #features {
+    margin-top: 0;
+    .title {
+      margin-bottom: 3rem;
+      .heading {
+        font-size: 3rem;
+        letter-spacing: -0.2px;
+      }
+    }
+    .footer {
+      width: 70%;
+      margin: 5rem auto 0 auto;
+      .text {
+        font-size: 16px;
+        letter-spacing: -0.1px;
+      }
+    }
+    .card {
+      margin-bottom: 0;
+      .content {
+        .heading {
+          font-size: 30px;
+        }
+        .paragraph {
+          font-size: 16px;
+          letter-spacing: 0.2px;
+        }
+      }
+      .graphic {
+        .marketplace {
+          .items {
+            .item {
+              .left {
+                .heading {
+                  font-size: 18px;
+                }
+                .text {
+                  font-size: 14px;
+                  letter-spacing: 0;
+                }
+              }
+            }
+          }
+        }
+        .tracker {
+          .items {
+            .item {
+              button {
+                display: none;
+              }
+              .left {
+                .heading {
+                  font-size: 18px;
+                }
+                .text {
+                  font-size: 14px;
+                  letter-spacing: 0;
+                }
+              }
+            }
+          }
+        }
+        .calls {
+          .call {
+            .avatar {
+              width: 60px;
+              height: 60px;
+              .initials {
+                font-size: 14px;
+              }
+            }
+            .ring {
+              width: 60px;
+              height: 60px;
+              .icon {
+                width: 30px;
+                height: auto;
+              }
+            }
+          }
+          .status {
+            .time {
+              font-size: 14px;
+              letter-spacing: 0;
+            }
+            .text {
+              font-size: 14px;
+              letter-spacing: 0;
+            }
+          }
+        }
+        .support {
+          .input {
+            .text {
+              font-size: 14px;
+              letter-spacing: 0;
+            }
+          }
+          .items {
+            .item {
+              gap: 1rem;
+              margin-bottom: 1rem;
+              .avatar {
+                width: 60px;
+                height: 60px;
+                .initials {
+                  font-size: 16px;
+                }
+              }
+              .name {
+                font-size: 16px;
+              }
+              .message {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+        .streams {
+          .stream {
+            gap: 1.5rem;
+            padding-left: 0;
+            .live {
+              width: 60px;
+              height: 60px;
+            }
+            .text {
+              font-size: 18px;
+            }
+            .description {
+              font-size: 16px;
+            }
+          }
+          .screen {
+            .avatar {
+              width: 60px;
+              height: 60px;
+              .initials {
+                font-size: 16px;
+              }
+            }
+          }
+        }
+        .bots {
+          height: 320px;
+          .items {
+            .item {
+              width: 100%;
+              &.separate {
+                transform: translate(0);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /* MANIFESTO */
+  #manifesto {
+    padding: 5rem 0;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    .content {
+      width: 500px;
+      .title {
+        .heading {
+          font-size: 2.5rem;
+          letter-spacing: -0.2px;
+          margin: 0 0 2rem 0;
+        }
+        .paragraph {
+          font-size: 20px;
+          letter-spacing: 0.2px;
+        }
+        .footer {
+          margin: 3rem 0 1.5rem 0;
+        }
+      }
+      .signatures {
+        width: 120px;
+        height: auto;
+        margin-top: 2rem;
+      }
+    }
+  }
+  /* PROVIDERS */
+  #providers {
+    .title {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      .heading {
+        font-size: 3rem;
+        letter-spacing: -0.2px;
+      }
+      .text {
+        width: 60%;
+        font-size: 16px;
+        margin-bottom: 1rem;
+      }
+    }
+    .card {
+      margin-bottom: 2rem;
+    }
+    .avatar {
+      width: 60px;
+      height: 60px;
+    }
+    .name {
+      font-size: 20px;
+    }
+    .icons {
+      .icon {
+        width: 20px;
+      }
+    }
+    .description {
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+  }
+  /* PLANS */
+  #plans {
+    padding: 0 0 5rem 0;
+    background-size: cover;
+    .title {
+      margin-bottom: 3rem;
+      .heading {
+        font-size: 2.5rem;
+        letter-spacing: -0.2px;
+      }
+    }
+    .card {
+      padding: 20px;
+      margin-bottom: 1rem;
+      .name {
+        font-size: 14px;
+        letter-spacing: 0;
+      }
+      .price {
+        .heading {
+          font-size: 40px;
+        }
+        .cycle {
+          font-size: 16px;
+        }
+      }
+      .text {
+        font-size: 14px;
+        letter-spacing: 0;
+      }
+      .items {
+        .item {
+          .icon {
+            width: 20px;
+            height: 20px;
+            .tick {
+              width: 15px;
+              height: auto;
+            }
+          }
+          .feature {
+            font-size: 16px;
+            letter-spacing: 0;
+          }
+        }
+      }
+    }
+    .footer {
+      margin: 3rem 0 0 0;
+      .text {
+        font-size: 12px;
+      }
+      .logo {
+        width: auto;
+        height: 22px;
+        object-fit: contain;
+        margin-right: 1.5rem;
+        &.large {
+          height: 16px;
+        }
+      }
+    }
+  }
+  /* FAQ */
+  #faq {
+    padding: 5rem 0;
+    .title {
+      margin-bottom: 3rem;
+      .heading {
+        font-size: 2.5rem;
+        letter-spacing: -0.2px;
+      }
+    }
+  }
+  /* CONTACT */
+  #contact {
+    padding: 0 0;
+    .title {
+      margin-bottom: 3rem;
+      .heading {
+        font-size: 2.5rem;
+        letter-spacing: -0.2px;
+      }
+    }
+    .form {
+      .input {
+        padding: 14px 20px;
+        font-size: 14px;
+      }
+    }
+  }
+  /* GLOBALS */
+  .col-md-3,
+  .col-md-4,
+  .col-md-6 {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 100%;
+  }
+  .col-tb-6 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+  .col-tb-6 {
+    max-width: 50%;
+    flex: 0 50%;
+  }
+  .col-sm-4 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .col-sm-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+  }
+  .desktop-only {
+    display: none !important;
+  }
+  .mb-only {
+    display: block !important;
+  }
+  .mgtop-xl {
+    margin-top: 3rem;
+  }
+  .mgtop-xlg {
+    margin-top: 5rem;
+  }
+  .h-mgbottom-xxl {
+    height: 5rem;
+  }
+  .mb-v-center {
+    align-items: center;
+  }
+  .iconWrap {
+    width: 50px;
+    height: 50px;
+
+    .icon {
+      width: 90%;
+    }
+    &.sm {
+      width: 40px;
+      height: 40px;
+    }
+  }
 }

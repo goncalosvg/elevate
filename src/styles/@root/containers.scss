@@ -35,6 +35,18 @@ $wrapper-size-xl: 5%; /* 4K devices */
       width: 100%;
       padding: 0 $wrapper-size-xs;
     }
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
+      width: 100%;
+      padding: 0 $wrapper-size-sm;
+    }
+    @media only screen and (min-width: 1024px) and (max-width: 1439px) {
+      width: 100%;
+      padding: 0 $wrapper-size-md;
+    }
+    @media only screen and (min-width: 1440px) and (max-width: 1800px) {
+      width: 100%;
+      padding: 0 $wrapper-size-lg;
+    }
   }
   &.sm-w {
     display: block;

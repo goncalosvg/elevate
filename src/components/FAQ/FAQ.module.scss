@@ -95,3 +95,24 @@
     font-size: 16px;
   }
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .accordion {
+    width: 100%;
+  }
+  .accordionHeader {
+    font-size: 16px;
+  }
+  .accordionBody {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+  .accordionHeader {
+    font-size: 18px;
+  }
+  .accordionBody {
+    font-size: 18px;
+  }
+}

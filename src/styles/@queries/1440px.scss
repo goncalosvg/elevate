@@ -2,177 +2,71 @@
 @use "@styles/@root/utils";
 
 @media only screen and (min-width: 1440px) and (max-width: 1600px) {
-  #home {
-    padding: 10rem 0 2rem 0;
+  #hero {
     .content {
       .title {
-        .eyes {
-          margin-bottom: 2rem;
-          .eye {
-            width: 40px;
-          }
-        }
+        width: 600px;
         .heading {
-          font-size: 70px;
-        }
-      }
-      .description {
-        .subheading {
-          font-size: 16px;
-        }
-        .text {
-          font-size: 14px;
+          font-size: 5rem;
         }
       }
     }
   }
-  /* STATISTICS */
-  #statistics {
-    .card {
-      .stat {
-        font-size: 100px;
-      }
-      p {
-        font-size: 18px;
-        @include utils.spacing(-0.5px);
-      }
-    }
-  }
-  /* CLIENTS */
-  #clients {
-    padding: 5rem 0;
+  /* FEATURES */
+  #features {
     .title {
-      .pill {
-        font-size: 14px;
-        .icon {
-          width: 15px;
-        }
-      }
       .heading {
-        font-size: 60px;
-        @include utils.spacing(-5px);
-      }
-    }
-    .brands {
-      gap: 2rem;
-      .brand {
-        width: 80px;
-        height: 50px;
-      }
-    }
-    p {
-      font-size: 16px;
-    }
-  }
-  /* ABOUT */
-  #about {
-    padding: 0 0 5rem 0;
-    .card {
-      height: 80vh;
-      .wrap {
-        .left {
-          width: 30%;
-          .heading {
-            font-size: 70px;
-            @include utils.spacing(-3px);
-          }
-        }
-        .right {
-          width: 70%;
-          p {
-            width: 100%;
-            font-size: 18px;
-            margin: 2rem 0 0 0;
-          }
-        }
-      }
-    }
-    .leftpatch {
-      width: 260px;
-      height: 130px;
-    }
-    .rightpatch {
-      .btn {
-        min-width: 250px;
-        min-height: 120px;
-        font-size: 23px;
-        .arrowwrap {
-          width: 30px;
-          height: 30px;
-        }
+        font-size: 4rem;
       }
     }
   }
-  /* ROADMAP */
-  #roadmap {
-    .icon {
-      width: 40px;
-    }
-    .heading {
-      font-size: 50px;
-      @include utils.spacing(-4px);
-    }
-    p {
-      font-size: 16px;
-      @include utils.spacing(-0.6px);
-    }
-  }
-  /* PROJECTS */
-  #projects {
-    .title {
-      .left {
-        .pill {
-          font-size: 14px;
-          .icon {
-            width: 15px;
-          }
-        }
-        p {
-          font-size: 16px;
-        }
-      }
-      .right {
+  /* MANIFESTO */
+  #manifesto {
+    .content {
+      .title {
         .heading {
-          font-size: 60px;
-          @include utils.spacing(-5px);
+          font-size: 4rem;
         }
-      }
-    }
-    .project {
-      width: 100%;
-      height: 500px;
-    }
-    .info {
-      .name {
-        font-size: 30px;
-      }
-      .date {
-        font-size: 16px;
-        @include utils.spacing(-0.3px);
-      }
-    }
-    .card {
-      .message {
-        .avatar {
-          width: 50px;
-          height: 50px;
-        }
-        .sent {
-          .user {
-            font-size: 16px;
-          }
-          .at {
-            font-size: 12px;
-          }
-        }
-        .text {
-          font-size: 14px;
+        .paragraph {
+          font-size: 24px;
         }
       }
     }
   }
-  /* GLOBALS */
-  .footerwrap {
-    height: 85vh;
+  /* PROVIDERS */
+  #providers {
+    .title {
+      grid-template-columns: 2.2fr 1.5fr 2.2fr;
+      .heading {
+        font-size: 4rem;
+      }
+      .text {
+        font-size: 18x;
+      }
+    }
+  }
+  /* PLANS */
+  #plans {
+    .title {
+      .heading {
+        font-size: 4rem;
+      }
+    }
+  }
+  /* FAQ */
+  #faq {
+    .title {
+      .heading {
+        font-size: 4rem;
+      }
+    }
+  }
+  /* CONTACT */
+  #contact {
+    .title {
+      .heading {
+        font-size: 4rem;
+      }
+    }
   }
 }

@@ -86,3 +86,51 @@
     }
   }
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .btn {
+    padding: 8px 14px;
+    font-size: 14px;
+
+    &.primary-price {
+      padding: 12px 20px;
+      font-size: 14px;
+    }
+    &.end {
+      padding: 6px 12px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+  .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+  .btn {
+    &.primary-price {
+      padding: 14px 20px;
+      font-size: 16px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1440px) and (max-width: 1600px) {
+  .btn {
+    &.main-graphic {
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+    &.primary-small {
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+    &.end {
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+  }
+}

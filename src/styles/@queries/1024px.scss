@@ -2,5 +2,310 @@
 @use "@styles/@root/utils";
 
 @media only screen and (min-width: 1024px) and (max-width: 1439px) {
- 
+  #hero {
+    padding: 8rem 0 0 0;
+    overflow-y: hidden;
+    .content {
+      .title {
+        width: 550px;
+        .heading {
+          font-size: 4rem;
+        }
+        .paragraph {
+          width: 90%;
+          font-size: 16px;
+          letter-spacing: 0;
+        }
+        .footer {
+          .logos {
+            .logo {
+              width: auto;
+              height: 18px;
+              object-fit: contain;
+              &.large {
+                height: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .shadow {
+      &.left {
+        top: -10%;
+      }
+      &.center {
+        top: -50%;
+      }
+      &.right {
+        top: -80%;
+      }
+    }
+  }
+  /* FEATURES */
+  #features {
+    .title {
+      margin-bottom: 4rem;
+      .heading {
+        font-size: 3rem;
+      }
+    }
+    .footer {
+      margin: 5rem auto 0 auto;
+    }
+    .card {
+      margin-bottom: 0;
+      .content {
+        .heading {
+          font-size: 30px;
+        }
+        .paragraph {
+          font-size: 16px;
+          letter-spacing: 0.2px;
+        }
+      }
+      .graphic {
+        .marketplace {
+          .items {
+            .item {
+              .left {
+                .heading {
+                  font-size: 18px;
+                }
+                .text {
+                  font-size: 14px;
+                  letter-spacing: 0;
+                }
+              }
+            }
+          }
+        }
+        .tracker {
+          .items {
+            .item {
+              button {
+                display: none;
+              }
+              .left {
+                .heading {
+                  font-size: 18px;
+                }
+                .text {
+                  font-size: 14px;
+                  letter-spacing: 0;
+                }
+              }
+            }
+          }
+        }
+        .calls {
+          .call {
+            .avatar {
+              width: 60px;
+              height: 60px;
+              .initials {
+                font-size: 14px;
+              }
+            }
+            .ring {
+              width: 60px;
+              height: 60px;
+              .icon {
+                width: 30px;
+                height: auto;
+              }
+            }
+          }
+          .status {
+            .time {
+              font-size: 14px;
+              letter-spacing: 0;
+            }
+            .text {
+              font-size: 14px;
+              letter-spacing: 0;
+            }
+          }
+        }
+        .support {
+          .input {
+            .text {
+              font-size: 14px;
+              letter-spacing: 0;
+            }
+          }
+          .items {
+            .item {
+              gap: 1rem;
+              margin-bottom: 1rem;
+              .avatar {
+                width: 60px;
+                height: 60px;
+                .initials {
+                  font-size: 16px;
+                }
+              }
+              .name {
+                font-size: 16px;
+              }
+              .message {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+        .streams {
+          .stream {
+            gap: 1.5rem;
+            padding-left: 0;
+            .live {
+              width: 60px;
+              height: 60px;
+            }
+            .text {
+              font-size: 18px;
+            }
+            .description {
+              font-size: 16px;
+            }
+          }
+          .screen {
+            .avatar {
+              width: 60px;
+              height: 60px;
+              .initials {
+                font-size: 16px;
+              }
+            }
+          }
+        }
+        .bots {
+          height: 320px;
+          .items {
+            .item {
+              width: 100%;
+              &.separate {
+                transform: translate(0);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /* MANIFESTO */
+  #manifesto {
+    .content {
+      width: 450px;
+      .title {
+        .heading {
+          font-size: 3rem;
+          margin: 0 0 3rem 0;
+        }
+        .paragraph {
+          font-size: 20px;
+        }
+      }
+      .signatures {
+        width: 120px;
+      }
+    }
+  }
+  /* PROVIDERS */
+  #providers {
+    .title {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      .heading {
+        font-size: 3rem;
+        letter-spacing: -0.2px;
+      }
+      .text {
+        width: 60%;
+        font-size: 16px;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  /* PLANS */
+  #plans {
+    background-size: cover;
+    .title {
+      .heading {
+        font-size: 3rem;
+      }
+    }
+    .card {
+      .name {
+        font-size: 14px;
+      }
+      .price {
+        .heading {
+          font-size: 40px;
+          letter-spacing: 0;
+        }
+        .cycle {
+          font-size: 16px;
+        }
+      }
+      .text {
+        font-size: 16px;
+        letter-spacing: 0;
+      }
+      .items {
+        .item {
+          .icon {
+            width: 20px;
+            height: 20px;
+          }
+          .feature {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+  /* FAQ */
+  #faq {
+    padding: 5rem 0;
+    .title {
+      .heading {
+        font-size: 3rem;
+      }
+    }
+  }
+  /* CONTACT */
+  #contact {
+    .title {
+      .heading {
+        font-size: 3rem;
+      }
+    }
+  }
+  /* GLOBALS */
+  .laptop-hidden {
+    display: none !important;
+  }
+  .laptop-only {
+    display: block !important;
+  }
+  .col-lp-4,
+  .col-lp-6 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .col-lp-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+  }
+  .col-lp-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
 }

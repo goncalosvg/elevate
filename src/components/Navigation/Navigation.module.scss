@@ -214,29 +214,10 @@
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   #nav {
     .content {
-      .left {
-        display: none;
-      }
-      .center {
-        width: 80%;
-        justify-content: flex-start;
-        .logo {
-          width: 110px;
-        }
-      }
       .right {
         width: 20%;
-        .items {
-          display: none;
-        }
-        .menu {
-          display: block;
-        }
       }
     }
-  }
-  #fixednav {
-    display: none;
   }
 }
 
@@ -256,6 +237,21 @@
       }
       .btn {
         display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+  #nav {
+    .content {
+      .left {
+        gap: 2rem;
+        .items {
+          .item {
+            font-size: 14px;
+          }
+        }
       }
     }
   }
