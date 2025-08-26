@@ -19,12 +19,12 @@ export default function FAQAccordion() {
     {
       question: "What is Elevate?",
       answer:
-        "Elevate is a private, high-quality community built for traders, crypto natives, and anyone looking to level up their game in the markets. We combine unique tools, live discussions, and a hand-picked member base to create a space that actually delivers value — not just a chatroom.",
+        "Elevate is a private, high-quality community built for traders, crypto natives, and anyone looking to level up their game in the markets. We combine unique tools, live discussions, 24/7 activity from the best of the best and hand-picked members to create a space that actually delivers value — not just a chatroom.",
     },
     {
       question: "I'm a beginner. Can I still join?",
       answer:
-        "Absolutely. All of our members started with zero experience and have grown. Whether you're just getting started or already seasoned, there's a clear path to learn, contribute, and earn rewards once you join the group.",
+        "Absolutely. Some of our members started with zero experience and have grown. Whether you're just getting started or already seasoned, there's a clear path to learn, contribute, and earn rewards once you join the group.",
     },
     {
       question: "How do I earn rewards?",
@@ -39,12 +39,12 @@ export default function FAQAccordion() {
     {
       question: "Can I talk directly with other members?",
       answer:
-        "Yes. Our 1-on-1 Calls feature lets you connect directly with other members via call or text for advice, strategy, or anything else you hand in mind.",
+        "Yes, not only are they active all day in the chats, Our 1-on-1 feature lets you connect directly with other members via call or text for advice, strategy, or anything else you hand in mind.",
     },
     {
       question: "What is Engage?",
       answer:
-        "Engage is our built-in X (Twitter) interaction system. You get free engagement on your posts from members and the team, and you earn points for every post you interact with — boosting both your reach and your rewards.",
+        "Engage is our built-in X (Twitter) interaction system. You get free engagement on your posts from members and the team, and you earn points for every post you interact with — boosting both your reach and your rewards which will convert to a marketplace with rewards.",
     },
     {
       question: "Do you host live sessions?",

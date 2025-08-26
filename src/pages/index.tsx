@@ -20,8 +20,7 @@ import {
   CallRinging04Icon,
   InternetAntenna01Icon,
   LiveStreaming01Icon,
-  NewTwitterIcon,
-  Tick01Icon,
+  NewTwitterIcon
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
@@ -36,31 +35,82 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const [showAllProviders, setShowAllProviders] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
+  const [contentVariationIndex, setContentVariationIndex] = useState([0, 0, 0]); // Track content variation for each item
+  const [lastDataStepOne, setLastDataStepOne] = useState([false, false, false]); // Track when each item was last at data-step 1
 
-  // Cycle through steps every 2 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentStep((prevStep) => {
-        // Cycle from 1 -> 2 -> 3 -> 1
-        return prevStep === 3 ? 1 : prevStep + 1;
-      });
-    }, 2000); // 2 seconds delay
+  // Content data for each item with 2 variations
+  const itemContent = [
+    // Item 0 content variations
+    [
+      { heading: "@RealDonaldTrump", text: "Trump just posted a new X post" },
+      { heading: "@ElonMusk", text: "ElonMusk replied to a X post" },
+    ],
+    // Item 1 content variations
+    [
+      { heading: "@aeyakovenko", text: "Aeyakovenko posted a new IG reel" },
+      { heading: "@Cupseyy", text: "Cupsey posted a carousel on IG" },
+    ],
+    // Item 2 content variations
+    [
+      { heading: "@daumeneth", text: "Daumeneth posted a Thread on X" },
+      { heading: "@sama", text: "Sam Altman posted a new X post" },
+    ],
+  ];
 
-    // Cleanup interval on component unmount
-    return () => clearInterval(interval);
-  }, []);
-
-  // Helper function to calculate data-step for each item
-  const getStepForItem = (itemIndex: number) => {
-    // itemIndex: 0, 1, 2 (for the 3 items)
-    // currentStep: 1, 2, 3
-    // We want to rotate the steps
+  const getStepForItemWithStep = (itemIndex: number, step: number) => {
     const steps = [1, 2, 3];
-    const rotatedIndex = (itemIndex + (currentStep - 1)) % 3;
+    const rotatedIndex = (itemIndex + (step - 1)) % 3;
     return steps[rotatedIndex];
   };
 
-  // Animation variants for the feature cards
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentStep((prevStep) => {
+        const nextStep = prevStep === 3 ? 1 : prevStep + 1;
+        return nextStep;
+      });
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLastDataStepOne((prevLastStepOne) => {
+        const newLastStepOne = [...prevLastStepOne];
+
+        for (let itemIndex = 0; itemIndex < 3; itemIndex++) {
+          const itemDataStep = getStepForItemWithStep(itemIndex, currentStep);
+          const wasAtStepOne = prevLastStepOne[itemIndex];
+          const isAtStepOne = itemDataStep === 1;
+
+          if (isAtStepOne && !wasAtStepOne) {
+            setContentVariationIndex((prevVariations) => {
+              const newVariations = [...prevVariations];
+              newVariations[itemIndex] = newVariations[itemIndex] === 0 ? 1 : 0;
+              return newVariations;
+            });
+          }
+
+          newLastStepOne[itemIndex] = isAtStepOne;
+        }
+
+        return newLastStepOne;
+      });
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, [currentStep]);
+
+  const getStepForItem = (itemIndex: number) => {
+    return getStepForItemWithStep(itemIndex, currentStep);
+  };
+
+  const getItemContent = (itemIndex: number) => {
+    const variationIndex = contentVariationIndex[itemIndex];
+    return itemContent[itemIndex][variationIndex];
+  };
+
   const cardVariants = {
     hidden: {
       opacity: 0,
@@ -144,8 +194,8 @@ export default function Home() {
                   <p className="paragraph">
                     Join a private network of top-tier traders, founders, and
                     analysts shaping the future of crypto. Get exclusive
-                    insights, real-time strategies, and the edge you won't find
-                    on X.
+                    insights, real-time strategies you wont find on any social
+                    media.
                   </p>
                 </FadeIn>
                 <FadeIn delay={0.5}>
@@ -188,8 +238,8 @@ export default function Home() {
                       <Image
                         width={500}
                         height={100}
-                        className="logo"
-                        src="/companies/zoomex.png"
+                        className="logo small"
+                        src="/companies/okx.png"
                         alt="partner"
                       />
                     </FadeIn>
@@ -233,8 +283,8 @@ export default function Home() {
                       <Image
                         width={500}
                         height={100}
-                        className="logo"
-                        src="/companies/bybit.png"
+                        className="logo large"
+                        src="/companies/gmgn.png"
                         alt="partner"
                       />
                     </FadeIn>
@@ -455,8 +505,7 @@ export default function Home() {
                     <p className="paragraph">
                       Earn points by doing reps, engaging with tweets, or
                       hopping on calls — then redeem them for rewards like free
-                      SOL, reposts from top providers, free memberships,
-                      exclusive items, and more.
+                      SOL, free whitelists, free memberships, and more.
                     </p>
                   </div>
                   <div className="graphic">
@@ -525,28 +574,28 @@ export default function Home() {
                       <ul className="items">
                         <li className="item" data-step={getStepForItem(0)}>
                           <div className="left">
-                            <h4 className="heading">@MarcellxMarcell</h4>
-                            <p className="text">
-                              Marcel just replied to an X post
-                            </p>
+                            <h4 className="heading">
+                              {getItemContent(0).heading}
+                            </h4>
+                            <p className="text">{getItemContent(0).text}</p>
                           </div>
                           <Button variant="primary-small">See more</Button>
                         </li>
                         <li className="item" data-step={getStepForItem(1)}>
                           <div className="left">
-                            <h4 className="heading">@Cupseyy</h4>
-                            <p className="text">
-                              Cupsey posted an Instagram Reel
-                            </p>
+                            <h4 className="heading">
+                              {getItemContent(1).heading}
+                            </h4>
+                            <p className="text">{getItemContent(1).text}</p>
                           </div>
                           <Button variant="primary-small">See more</Button>
                         </li>
                         <li className="item" data-step={getStepForItem(2)}>
                           <div className="left">
-                            <h4 className="heading">@daumeneth</h4>
-                            <p className="text">
-                              Daumeneth posted a Thread on X
-                            </p>
+                            <h4 className="heading">
+                              {getItemContent(2).heading}
+                            </h4>
+                            <p className="text">{getItemContent(2).text}</p>
                           </div>
                           <Button variant="main-graphic">See more</Button>
                         </li>
@@ -594,7 +643,7 @@ export default function Home() {
                           <div className="flex dir-column">
                             <span className="time">12:43</span>
                             <span className="text">
-                              Crypto talk with Provider
+                              Ongoing call with Daumeneth
                             </span>
                           </div>
                           <Button variant="end">End call</Button>
@@ -666,8 +715,8 @@ export default function Home() {
                   <div className="content">
                     <h3 className="heading">Streams</h3>
                     <p className="paragraph">
-                      Daily / Weekly trenching and perp livestreams and
-                      discussion with Marcell, Cupsey, Daumen... and many more!
+                      Daily trenching , perp livestreams, dev talk, market
+                      anylsis and discussion with members.
                     </p>
                   </div>
                   <div className="graphic">
@@ -682,16 +731,14 @@ export default function Home() {
                           />
                         </div>
                         <div>
-                          <span className="text">You're live!</span>
+                          <span className="text">LetterBomb is Live!</span>
                           <span className="description">
-                            Let's talk about Tokenomics
+                            Let's talk about the latest news in the crypto space
                           </span>
                         </div>
                       </div>
                       <div className="screen">
-                        <div className="avatar">
-                          <span className="initials">GM</span>
-                        </div>
+                        <div className="avatar"></div>
                       </div>
                     </div>
                   </div>
@@ -784,8 +831,8 @@ export default function Home() {
                     <p className="paragraph">
                       Earn points by doing reps, engaging with tweets, or
                       hopping on calls — then redeem them for rewards like free
-                      SOL, reposts from top providers, free memberships,
-                      exclusive items, and more.
+                      SOL, free whitelists, free memberships, exclusive items,
+                      and more.
                     </p>
                   </div>
                   <div className="graphic">
@@ -854,28 +901,28 @@ export default function Home() {
                       <ul className="items">
                         <li className="item" data-step={getStepForItem(0)}>
                           <div className="left">
-                            <h4 className="heading">@MarcellxMarcell</h4>
-                            <p className="text">
-                              Marcel just replied to an X post
-                            </p>
+                            <h4 className="heading">
+                              {getItemContent(0).heading}
+                            </h4>
+                            <p className="text">{getItemContent(0).text}</p>
                           </div>
                           <Button variant="primary-small">See more</Button>
                         </li>
                         <li className="item" data-step={getStepForItem(1)}>
                           <div className="left">
-                            <h4 className="heading">@Cupseyy</h4>
-                            <p className="text">
-                              Cupsey posted an Instagram Reel
-                            </p>
+                            <h4 className="heading">
+                              {getItemContent(1).heading}
+                            </h4>
+                            <p className="text">{getItemContent(1).text}</p>
                           </div>
                           <Button variant="primary-small">See more</Button>
                         </li>
                         <li className="item" data-step={getStepForItem(2)}>
                           <div className="left">
-                            <h4 className="heading">@daumeneth</h4>
-                            <p className="text">
-                              Daumeneth posted a Thread on X
-                            </p>
+                            <h4 className="heading">
+                              {getItemContent(2).heading}
+                            </h4>
+                            <p className="text">{getItemContent(2).text}</p>
                           </div>
                           <Button variant="main-graphic">See more</Button>
                         </li>
@@ -922,7 +969,7 @@ export default function Home() {
                           <div className="flex dir-column">
                             <span className="time">12:43</span>
                             <span className="text">
-                              Crypto talk with Provider
+                              Ongoing call with Daumeneth
                             </span>
                           </div>
                           <Button variant="end">End call</Button>
@@ -992,8 +1039,8 @@ export default function Home() {
                   <div className="content">
                     <h3 className="heading">Streams</h3>
                     <p className="paragraph">
-                      Daily / Weekly trenching and perp livestreams and
-                      discussion with Marcell, Cupsey, Daumen... and many more!
+                      Daily trenching , perp livestreams, dev talk, market
+                      anylsis and discussion with members.
                     </p>
                   </div>
                   <div className="graphic">
@@ -1110,8 +1157,8 @@ export default function Home() {
                     <p className="paragraph">
                       Earn points by doing reps, engaging with tweets, or
                       hopping on calls — then redeem them for rewards like free
-                      SOL, reposts from top providers, free memberships,
-                      exclusive items, and more.
+                      SOL, free whitelists, free memberships, exclusive items,
+                      and more.
                     </p>
                   </div>
                   <div className="graphic">
@@ -1180,28 +1227,28 @@ export default function Home() {
                       <ul className="items">
                         <li className="item" data-step={getStepForItem(0)}>
                           <div className="left">
-                            <h4 className="heading">@MarcellxMarcell</h4>
-                            <p className="text">
-                              Marcel just replied to an X post
-                            </p>
+                            <h4 className="heading">
+                              {getItemContent(0).heading}
+                            </h4>
+                            <p className="text">{getItemContent(0).text}</p>
                           </div>
                           <Button variant="primary-small">See more</Button>
                         </li>
                         <li className="item" data-step={getStepForItem(1)}>
                           <div className="left">
-                            <h4 className="heading">@Cupseyy</h4>
-                            <p className="text">
-                              Cupsey posted an Instagram Reel
-                            </p>
+                            <h4 className="heading">
+                              {getItemContent(1).heading}
+                            </h4>
+                            <p className="text">{getItemContent(1).text}</p>
                           </div>
                           <Button variant="primary-small">See more</Button>
                         </li>
                         <li className="item" data-step={getStepForItem(2)}>
                           <div className="left">
-                            <h4 className="heading">@daumeneth</h4>
-                            <p className="text">
-                              Daumeneth posted a Thread on X
-                            </p>
+                            <h4 className="heading">
+                              {getItemContent(2).heading}
+                            </h4>
+                            <p className="text">{getItemContent(2).text}</p>
                           </div>
                           <Button variant="main-graphic">See more</Button>
                         </li>
@@ -1248,7 +1295,7 @@ export default function Home() {
                           <div className="flex dir-column">
                             <span className="time">12:43</span>
                             <span className="text">
-                              Crypto talk with Provider
+                              Ongoing call with Daumeneth
                             </span>
                           </div>
                           <Button variant="end">End call</Button>
@@ -1318,8 +1365,8 @@ export default function Home() {
                   <div className="content">
                     <h3 className="heading">Streams</h3>
                     <p className="paragraph">
-                      Daily / Weekly trenching and perp livestreams and
-                      discussion with Marcell, Cupsey, Daumen... and many more!
+                      Daily trenching , perp livestreams, dev talk, market
+                      anylsis and discussion with members.
                     </p>
                   </div>
                   <div className="graphic">
@@ -1425,7 +1472,7 @@ export default function Home() {
               <p className="text">
                 Join a private network of top-tier traders, founders, and
                 analysts shaping the future of crypto. Get exclusive insights,
-                real-time strategies, and the edge you won't find on X.
+                real-time strategies you wont find on any social media.
               </p>
               <div className="w-full flex h-center">
                 <Button variant="main">Join the Community</Button>
@@ -1444,13 +1491,13 @@ export default function Home() {
                   style="heading"
                 />
                 <GradientReveal
-                  paragraph={`One day, a group of retards got together and thought, what if we combine our skillsets and make a group people will actually want to be apart of.
+                  paragraph={`When we were making Elevate we wanted to make something that not only has never been done before. Not like these other paid groups.
 
-Not like these other paid groups who only offer a general chat and few calls per month.
+After 6+ months of work, we have perfectly selected the best people to help you Elevate your game.
 
-We make something people will appreciate and find value in. Something people will want to be a part of.
+After getting the best people and covering all areas from Trenching, Perp trading, NFT's, Business, Devving and more. This is the place to build, connect and get your serious advantage in crypto.
 
-We offer unique stuff people genuinely want and hand-select the best and active traders, beginners, and crypto natives to be members and make the best group of all time. 
+There has truly never been something like this and we seriously do think we have made something people will appreciate and find value in. Something people will want to be a part of month after month.
 
 That's how Elevate was born.
                   `}
@@ -1673,189 +1720,6 @@ That's how Elevate was born.
                 </div>
                 <div className="col-md-3 col-tb-6 col-lp-4">
                   <FadeIn
-                    delay={0.4}
-                    direction="up"
-                    distance={30}
-                    duration={0.8}
-                  >
-                    <div className="card flex gap-sm">
-                      <div
-                        className="avatar"
-                        style={{
-                          backgroundImage: "url('/providers/risk.jpg')",
-                          backgroundSize: "cover",
-                        }}
-                      ></div>
-                      <div className="flex dir-column">
-                        <div className="flex v-center gap-sm">
-                          <h4 className="name">Risk</h4>
-                          <div className="icons">
-                            <Link href="https://x.com/risk100x" target="_blank">
-                              <HugeiconsIcon
-                                icon={NewTwitterIcon}
-                                size={18}
-                                color="#ffffff"
-                                strokeWidth={1.5}
-                              />
-                            </Link>
-                            <Image
-                              width={50}
-                              height={50}
-                              className="icon"
-                              src="/check.png"
-                              alt=""
-                            />
-                          </div>
-                        </div>
-                        <p className="description">
-                          Rising Solana memecoin star known for spotting early
-                          narratives and holding with conviction. Strategic
-                          calls like $KORI earned him praise.
-                        </p>
-                      </div>
-                    </div>
-                  </FadeIn>
-                </div>
-                <div className="col-md-3 col-tb-6 col-lp-4">
-                  <FadeIn
-                    delay={0.5}
-                    direction="up"
-                    distance={30}
-                    duration={0.8}
-                  >
-                    <div className="card flex gap-sm">
-                      <div
-                        className="avatar"
-                        style={{
-                          backgroundImage: "url('/providers/frags.jpg')",
-                          backgroundSize: "cover",
-                        }}
-                      ></div>
-                      <div className="flex dir-column">
-                        <div className="flex v-center gap-sm">
-                          <h4 className="name">Frags</h4>
-                          <div className="icons">
-                            <Link
-                              href="https://x.com/cryptofrags"
-                              target="_blank"
-                            >
-                              <HugeiconsIcon
-                                icon={NewTwitterIcon}
-                                size={18}
-                                color="#ffffff"
-                                strokeWidth={1.5}
-                              />
-                            </Link>
-                            <Image
-                              width={50}
-                              height={50}
-                              className="icon"
-                              src="/check.png"
-                              alt=""
-                            />
-                          </div>
-                        </div>
-                        <p className="description">
-                          "Former Believer, Turned Trader" who reads memecoin
-                          narratives like orderbooks, vocal about $CRCL early
-                          and cultural catalyst trading.
-                        </p>
-                      </div>
-                    </div>
-                  </FadeIn>
-                </div>
-                <div className="col-md-3 col-tb-6 col-lp-4">
-                  <FadeIn
-                    delay={0.6}
-                    direction="up"
-                    distance={30}
-                    duration={0.8}
-                  >
-                    <div className="card flex gap-sm">
-                      <div
-                        className="avatar"
-                        style={{
-                          backgroundImage: "url('/providers/lama.jpg')",
-                          backgroundSize: "cover",
-                        }}
-                      ></div>
-                      <div className="flex dir-column">
-                        <div className="flex v-center gap-sm">
-                          <h4 className="name">Lama</h4>
-                          <div className="icons">
-                            <Link href="https://x.com/Lamaxbt" target="_blank">
-                              <HugeiconsIcon
-                                icon={NewTwitterIcon}
-                                size={18}
-                                color="#ffffff"
-                                strokeWidth={1.5}
-                              />
-                            </Link>
-                            <Image
-                              width={50}
-                              height={50}
-                              className="icon"
-                              src="/check.png"
-                              alt=""
-                            />
-                          </div>
-                        </div>
-                        <p className="description">
-                          Rare blend of trader, builder, and storyteller who
-                          backs technical foresight with wins, turning $BNB &
-                          $ETH gains into real-world milestones.
-                        </p>
-                      </div>
-                    </div>
-                  </FadeIn>
-                </div>
-                <div className="col-md-3 col-tb-6 col-lp-4">
-                  <FadeIn
-                    delay={0.7}
-                    direction="up"
-                    distance={30}
-                    duration={0.8}
-                  >
-                    <div className="card flex gap-sm">
-                      <div
-                        className="avatar"
-                        style={{
-                          backgroundImage: "url('/providers/loopier.jpg')",
-                          backgroundSize: "cover",
-                        }}
-                      ></div>
-                      <div className="flex dir-column">
-                        <div className="flex v-center gap-sm">
-                          <h4 className="name">Loopier</h4>
-                          <div className="icons">
-                            <Link href="https://x.com/Loopierr" target="_blank">
-                              <HugeiconsIcon
-                                icon={NewTwitterIcon}
-                                size={18}
-                                color="#ffffff"
-                                strokeWidth={1.5}
-                              />
-                            </Link>
-                            <Image
-                              width={50}
-                              height={50}
-                              className="icon"
-                              src="/check.png"
-                              alt=""
-                            />
-                          </div>
-                        </div>
-                        <p className="description">
-                          Street-smart authentic voice in Solana ecosystem,
-                          known for heavy longs on sub-100M launchpads with
-                          no-hype approach.
-                        </p>
-                      </div>
-                    </div>
-                  </FadeIn>
-                </div>
-                <div className="col-md-3 col-tb-6 col-lp-4">
-                  <FadeIn
                     delay={0.8}
                     direction="up"
                     distance={30}
@@ -1904,54 +1768,6 @@ That's how Elevate was born.
                 </div>
                 <div className="col-md-3 col-tb-6 col-lp-4">
                   <FadeIn
-                    delay={0.9}
-                    direction="up"
-                    distance={30}
-                    duration={0.8}
-                  >
-                    <div className="card flex gap-sm">
-                      <div
-                        className="avatar"
-                        style={{
-                          backgroundImage: "url('/providers/missoralways.jpg')",
-                          backgroundSize: "cover",
-                        }}
-                      ></div>
-                      <div className="flex dir-column">
-                        <div className="flex v-center gap-sm">
-                          <h4 className="name">Missoralways</h4>
-                          <div className="icons">
-                            <Link
-                              href="https://x.com/missoralways"
-                              target="_blank"
-                            >
-                              <HugeiconsIcon
-                                icon={NewTwitterIcon}
-                                size={18}
-                                color="#ffffff"
-                                strokeWidth={1.5}
-                              />
-                            </Link>
-                            <Image
-                              width={50}
-                              height={50}
-                              className="icon"
-                              src="/check.png"
-                              alt=""
-                            />
-                          </div>
-                        </div>
-                        <p className="description">
-                          Savvy trader who turned 10 ETH into $2 million backing
-                          $KTA early, now champions $MEMECOIN with strategic
-                          positioning.
-                        </p>
-                      </div>
-                    </div>
-                  </FadeIn>
-                </div>
-                <div className="col-md-3 col-tb-6 col-lp-4">
-                  <FadeIn
                     delay={1.0}
                     direction="up"
                     distance={30}
@@ -1990,6 +1806,97 @@ That's how Elevate was born.
                           Leader of 500k+ members with sharp chart analysis and
                           early calls like $Zeus, $Hood, $Wolf and $Brett.
                           Focuses on education.
+                        </p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                </div>
+                <div className="col-md-3 col-tb-6 col-lp-4">
+                  <FadeIn
+                    delay={0.8}
+                    direction="up"
+                    distance={30}
+                    duration={0.8}
+                  >
+                    <div className="card flex gap-sm">
+                      <div
+                        className="avatar"
+                        style={{
+                          backgroundImage: "url('/providers/srpeters.jpg')",
+                          backgroundSize: "cover",
+                        }}
+                      ></div>
+                      <div className="flex dir-column">
+                        <div className="flex v-center gap-sm">
+                          <h4 className="name">Sr Peters</h4>
+                          <div className="icons">
+                            <Link
+                              href="https://x.com/SrPetersETH"
+                              target="_blank"
+                            >
+                              <HugeiconsIcon
+                                icon={NewTwitterIcon}
+                                size={18}
+                                color="#ffffff"
+                                strokeWidth={1.5}
+                              />
+                            </Link>
+                            <Image
+                              width={50}
+                              height={50}
+                              className="icon"
+                              src="/check.png"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                        <p className="description">
+                          OG with 4,500+ subscribers beloved for generosity,
+                          free-mint NFTs, spontaneous giveaways, and
+                          community-first approach.
+                        </p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                </div>
+                <div className="col-md-3 col-tb-6 col-lp-4">
+                  <FadeIn delay={0} direction="up" distance={30} duration={0.8}>
+                    <div className="card flex gap-sm">
+                      <div
+                        className="avatar"
+                        style={{
+                          backgroundImage: "url('/providers/spider.jpg')",
+                          backgroundSize: "cover",
+                        }}
+                      ></div>
+                      <div className="flex dir-column">
+                        <div className="flex v-center gap-sm">
+                          <h4 className="name">Spider</h4>
+                          <div className="icons">
+                            <Link
+                              href="https://x.com/SpiderCrypto0x"
+                              target="_blank"
+                            >
+                              <HugeiconsIcon
+                                icon={NewTwitterIcon}
+                                size={18}
+                                color="#ffffff"
+                                strokeWidth={1.5}
+                              />
+                            </Link>
+                            <Image
+                              width={50}
+                              height={50}
+                              className="icon"
+                              src="/check.png"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                        <p className="description">
+                          Precision trader with 150K+ followers who targets
+                          risk-meets-precision opportunities, posts detailed
+                          trade plans like a seasoned sniper.
                         </p>
                       </div>
                     </div>
@@ -2043,6 +1950,144 @@ That's how Elevate was born.
                     </div>
                   </FadeIn>
                 </div>
+                <div className="col-md-3 col-tb-6 col-lp-4">
+                  <FadeIn
+                    delay={0.2}
+                    direction="up"
+                    distance={30}
+                    duration={0.8}
+                  >
+                    <div className="card flex gap-sm">
+                      <div
+                        className="avatar"
+                        style={{
+                          backgroundImage: "url('/providers/patty.jpg')",
+                          backgroundSize: "cover",
+                        }}
+                      ></div>
+                      <div className="flex dir-column">
+                        <div className="flex v-center gap-sm">
+                          <h4 className="name">Patty</h4>
+                          <div className="icons">
+                            <Link href="https://x.com/patty_fi" target="_blank">
+                              <HugeiconsIcon
+                                icon={NewTwitterIcon}
+                                size={18}
+                                color="#ffffff"
+                                strokeWidth={1.5}
+                              />
+                            </Link>
+                            <Image
+                              width={50}
+                              height={50}
+                              className="icon"
+                              src="/check.png"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                        <p className="description">
+                          Bold influential voice in memecoin space known for
+                          sharp commentary, high-risk insights, and notable
+                          calls on DeGods projects.
+                        </p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                </div>
+                <div className="col-md-3 col-tb-6 col-lp-4">
+                  <FadeIn
+                    delay={0.6}
+                    direction="up"
+                    distance={30}
+                    duration={0.8}
+                  >
+                    <div className="card flex gap-sm">
+                      <div
+                        className="avatar"
+                        style={{
+                          backgroundImage: "url('/providers/minister.jpg')",
+                          backgroundSize: "cover",
+                        }}
+                      ></div>
+                      <div className="flex dir-column">
+                        <div className="flex v-center gap-sm">
+                          <h4 className="name">Minister</h4>
+                          <div className="icons">
+                            <Link
+                              href="https://x.com/MinisterOfNFTs"
+                              target="_blank"
+                            >
+                              <HugeiconsIcon
+                                icon={NewTwitterIcon}
+                                size={18}
+                                color="#ffffff"
+                                strokeWidth={1.5}
+                              />
+                            </Link>
+                            <Image
+                              width={50}
+                              height={50}
+                              className="icon"
+                              src="/check.png"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                        <p className="description">
+                          Secret co-founder of mfers with 165K followers,
+                          advocate for Pudgy Penguins, Azuki, and Honeyland,
+                          champions "Make NFTs Great Again."
+                        </p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                </div>
+                <div className="col-md-3 col-tb-6 col-lp-4">
+                  <FadeIn
+                    delay={0.7}
+                    direction="up"
+                    distance={30}
+                    duration={0.8}
+                  >
+                    <div className="card flex gap-sm">
+                      <div
+                        className="avatar"
+                        style={{
+                          backgroundImage: "url('/providers/loopier.jpg')",
+                          backgroundSize: "cover",
+                        }}
+                      ></div>
+                      <div className="flex dir-column">
+                        <div className="flex v-center gap-sm">
+                          <h4 className="name">Loopier</h4>
+                          <div className="icons">
+                            <Link href="https://x.com/Loopierr" target="_blank">
+                              <HugeiconsIcon
+                                icon={NewTwitterIcon}
+                                size={18}
+                                color="#ffffff"
+                                strokeWidth={1.5}
+                              />
+                            </Link>
+                            <Image
+                              width={50}
+                              height={50}
+                              className="icon"
+                              src="/check.png"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                        <p className="description">
+                          Street-smart authentic voice in Solana ecosystem,
+                          known for heavy longs on sub-100M launchpads with
+                          no-hype approach.
+                        </p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                </div>
               </div>
               {!showAllProviders && (
                 <div className="providers-overlay">
@@ -2062,7 +2107,7 @@ That's how Elevate was born.
                   <div className="row">
                     <div className="col-md-3 col-tb-6 col-lp-4">
                       <FadeIn
-                        delay={0}
+                        delay={0.4}
                         direction="up"
                         distance={30}
                         duration={0.8}
@@ -2071,16 +2116,16 @@ That's how Elevate was born.
                           <div
                             className="avatar"
                             style={{
-                              backgroundImage: "url('/providers/spider.jpg')",
+                              backgroundImage: "url('/providers/risk.jpg')",
                               backgroundSize: "cover",
                             }}
                           ></div>
                           <div className="flex dir-column">
                             <div className="flex v-center gap-sm">
-                              <h4 className="name">Spider</h4>
+                              <h4 className="name">Risk</h4>
                               <div className="icons">
                                 <Link
-                                  href="https://x.com/SpiderCrypto0x"
+                                  href="https://x.com/risk100x"
                                   target="_blank"
                                 >
                                   <HugeiconsIcon
@@ -2100,9 +2145,9 @@ That's how Elevate was born.
                               </div>
                             </div>
                             <p className="description">
-                              Precision trader with 150K+ followers who targets
-                              risk-meets-precision opportunities, posts detailed
-                              trade plans like a seasoned sniper.
+                              Rising Solana memecoin star known for spotting
+                              early narratives and holding with conviction.
+                              Strategic calls like $KORI earned him praise.
                             </p>
                           </div>
                         </div>
@@ -2110,7 +2155,7 @@ That's how Elevate was born.
                     </div>
                     <div className="col-md-3 col-tb-6 col-lp-4">
                       <FadeIn
-                        delay={0.2}
+                        delay={0.9}
                         direction="up"
                         distance={30}
                         duration={0.8}
@@ -2119,16 +2164,17 @@ That's how Elevate was born.
                           <div
                             className="avatar"
                             style={{
-                              backgroundImage: "url('/providers/patty.jpg')",
+                              backgroundImage:
+                                "url('/providers/missoralways.jpg')",
                               backgroundSize: "cover",
                             }}
                           ></div>
                           <div className="flex dir-column">
                             <div className="flex v-center gap-sm">
-                              <h4 className="name">Patty</h4>
+                              <h4 className="name">Missoralways</h4>
                               <div className="icons">
                                 <Link
-                                  href="https://x.com/patty_fi"
+                                  href="https://x.com/missoralways"
                                   target="_blank"
                                 >
                                   <HugeiconsIcon
@@ -2148,9 +2194,9 @@ That's how Elevate was born.
                               </div>
                             </div>
                             <p className="description">
-                              Bold influential voice in memecoin space known for
-                              sharp commentary, high-risk insights, and notable
-                              calls on DeGods projects.
+                              Savvy trader who turned 10 ETH into $2 million
+                              backing $KTA early, now champions $MEMECOIN with
+                              strategic positioning.
                             </p>
                           </div>
                         </div>
@@ -2206,6 +2252,54 @@ That's how Elevate was born.
                     </div>
                     <div className="col-md-3 col-tb-6 col-lp-4">
                       <FadeIn
+                        delay={0.5}
+                        direction="up"
+                        distance={30}
+                        duration={0.8}
+                      >
+                        <div className="card flex gap-sm">
+                          <div
+                            className="avatar"
+                            style={{
+                              backgroundImage: "url('/providers/frags.jpg')",
+                              backgroundSize: "cover",
+                            }}
+                          ></div>
+                          <div className="flex dir-column">
+                            <div className="flex v-center gap-sm">
+                              <h4 className="name">Frags</h4>
+                              <div className="icons">
+                                <Link
+                                  href="https://x.com/cryptofrags"
+                                  target="_blank"
+                                >
+                                  <HugeiconsIcon
+                                    icon={NewTwitterIcon}
+                                    size={18}
+                                    color="#ffffff"
+                                    strokeWidth={1.5}
+                                  />
+                                </Link>
+                                <Image
+                                  width={50}
+                                  height={50}
+                                  className="icon"
+                                  src="/check.png"
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                            <p className="description">
+                              "Former Believer, Turned Trader" who reads
+                              memecoin narratives like orderbooks, vocal about
+                              $CRCL early and cultural catalyst trading.
+                            </p>
+                          </div>
+                        </div>
+                      </FadeIn>
+                    </div>
+                    <div className="col-md-3 col-tb-6 col-lp-4">
+                      <FadeIn
                         delay={0.6}
                         direction="up"
                         distance={30}
@@ -2215,16 +2309,16 @@ That's how Elevate was born.
                           <div
                             className="avatar"
                             style={{
-                              backgroundImage: "url('/providers/minister.jpg')",
+                              backgroundImage: "url('/providers/lama.jpg')",
                               backgroundSize: "cover",
                             }}
                           ></div>
                           <div className="flex dir-column">
                             <div className="flex v-center gap-sm">
-                              <h4 className="name">Minister</h4>
+                              <h4 className="name">Lama</h4>
                               <div className="icons">
                                 <Link
-                                  href="https://x.com/MinisterOfNFTs"
+                                  href="https://x.com/Lamaxbt"
                                   target="_blank"
                                 >
                                   <HugeiconsIcon
@@ -2244,57 +2338,9 @@ That's how Elevate was born.
                               </div>
                             </div>
                             <p className="description">
-                              Secret co-founder of mfers with 165K followers,
-                              advocate for Pudgy Penguins, Azuki, and Honeyland,
-                              champions "Make NFTs Great Again."
-                            </p>
-                          </div>
-                        </div>
-                      </FadeIn>
-                    </div>
-                    <div className="col-md-3 col-tb-6 col-lp-4">
-                      <FadeIn
-                        delay={0.8}
-                        direction="up"
-                        distance={30}
-                        duration={0.8}
-                      >
-                        <div className="card flex gap-sm">
-                          <div
-                            className="avatar"
-                            style={{
-                              backgroundImage: "url('/providers/srpeters.jpg')",
-                              backgroundSize: "cover",
-                            }}
-                          ></div>
-                          <div className="flex dir-column">
-                            <div className="flex v-center gap-sm">
-                              <h4 className="name">Sr Peters</h4>
-                              <div className="icons">
-                                <Link
-                                  href="https://x.com/SrPetersETH"
-                                  target="_blank"
-                                >
-                                  <HugeiconsIcon
-                                    icon={NewTwitterIcon}
-                                    size={18}
-                                    color="#ffffff"
-                                    strokeWidth={1.5}
-                                  />
-                                </Link>
-                                <Image
-                                  width={50}
-                                  height={50}
-                                  className="icon"
-                                  src="/check.png"
-                                  alt=""
-                                />
-                              </div>
-                            </div>
-                            <p className="description">
-                              OG with 4,500+ subscribers beloved for generosity,
-                              free-mint NFTs, spontaneous giveaways, and
-                              community-first approach.
+                              Rare blend of trader, builder, and storyteller who
+                              backs technical foresight with wins, turning $BNB
+                              & $ETH gains into real-world milestones.
                             </p>
                           </div>
                         </div>
@@ -2450,7 +2496,7 @@ That's how Elevate was born.
             </div>
           </div>
         </section>
-        <section id="plans">
+        {/* <section id="plans">
           <div className="wrapper fixed">
             <div className="title">
               <TextReveal
@@ -2870,7 +2916,7 @@ That's how Elevate was born.
               </Marquee>
             </div>
           </div>
-        </section>
+        </section> */}
         <section id="faq">
           <div className="wrapper fixed">
             <div className="title">

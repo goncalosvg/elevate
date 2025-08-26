@@ -105,6 +105,9 @@
             &.large {
               height: 18px;
             }
+            &.small {
+              height: 30px;
+            }
           }
         }
       }
@@ -419,7 +422,7 @@
           padding-left: 20px;
           display: flex;
           align-items: center;
-          gap: 3rem;
+          gap: 2rem;
 
           .live {
             width: 70px;
@@ -467,7 +470,10 @@
             width: 90px;
             height: 90px;
             position: relative;
-            background: #181818;
+            background-color: #181818;
+            background-image: url("/providers/letterbomb.jpg");
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -475,15 +481,6 @@
               0 0 0 5px #181818,
               0 0 0 7px colors.$accent;
             border-radius: 250px;
-
-            .initials {
-              color: colors.$title;
-              font-family: utils.$font-regular;
-              font-size: 20px;
-              display: block;
-              text-transform: uppercase;
-              margin: 0 0;
-            }
           }
         }
       }
