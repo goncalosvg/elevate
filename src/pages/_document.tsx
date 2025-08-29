@@ -51,31 +51,6 @@ export default function Document() {
         <link rel="apple-touch-icon" sizes="72x72" href="/favicons/touch-ipad.png" />
         <link rel="apple-touch-icon" sizes="114x114" href="/favicons/touch-iphone.png" />
         <link rel="apple-touch-icon" sizes="152x152" href="/favicons/touch-ipad-ret.png" />
-
-        {/* Fonts */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
-          rel="stylesheet"
-        />
-
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-11KJPS207K"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-11KJPS207K', { page_path: window.location.pathname });
-            `,
-          }}
-        />
       </Head>
       <body>
         <Main />

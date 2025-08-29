@@ -30,7 +30,7 @@ export default function Footer() {
               </li>
             </ul>
             <ul className={styles.items}>
-              <li className={styles.item}>
+              {/* <li className={styles.item}>
                 <Link href="/">
                   <span className={styles.link}>Refund Policy</span>
                 </Link>
@@ -39,9 +39,9 @@ export default function Footer() {
                 <Link href="/">
                   <span className={styles.link}>Privacy Policy</span>
                 </Link>
-              </li>
+              </li> */}
               <li className={styles.item}>
-                <Link href="/">
+                <Link href="/terms">
                   <span className={styles.link}>Terms of Service</span>
                 </Link>
               </li>

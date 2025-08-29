@@ -118,7 +118,11 @@ export default function Navigation({ variant, hero }: INavigation) {
     <>
       <nav
         id={styles.nav}
-        className={clsx(styles[`${variant}`], menuActive && styles.active, 'fade-in')}
+        className={clsx(
+          styles[`${variant}`],
+          menuActive && styles.active,
+          "fade-in"
+        )}
         data-delay="1"
       >
         <div className="wrapper lg-w">
@@ -141,15 +145,15 @@ export default function Navigation({ variant, hero }: INavigation) {
                   id="matrix"
                   className={styles.item}
                   data-item="Features"
-                  onClick={() => scrollToSection("services")}
+                  onClick={() => scrollToSection("features")}
                 >
                   Features
                 </li>
-                <Link href="/chatting#refer">
+                {/* <Link href="/chatting#refer">
                   <li id="matrix" className={styles.item} data-item="Pricing">
                     Pricing
                   </li>
-                </Link>
+                </Link> */}
                 <li
                   id="matrix"
                   className={styles.item}
@@ -158,20 +162,20 @@ export default function Navigation({ variant, hero }: INavigation) {
                 >
                   FAQ
                 </li>
-                <Link href="/chatting" passHref>
-                  <li id="matrix" className={styles.item} data-item="Providers">
-                    Providers
-                  </li>
-                </Link>
+                <li
+                  id="matrix"
+                  className={styles.item}
+                  data-item="Providers"
+                  onClick={() => scrollToSection("providers")}
+                >
+                  Providers
+                </li>
               </ul>
             </div>
             <div className={styles.right}>
-              <Link
-                href="https://ruyj1b99a4p.typeform.com/to/rku5yxAo"
-                target="_blank"
-              >
+              <div onClick={() => scrollToSection("contact")}>
                 <Button>Contact us</Button>
-              </Link>
+              </div>
             </div>
           </div>
         </div>

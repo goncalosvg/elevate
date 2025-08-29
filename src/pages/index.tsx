@@ -180,7 +180,7 @@ export default function Home() {
                   <FadeIn delay={0.5}>
                     <div className="news">
                       <div className="tag">News</div>
-                      <span className="text">Lorem ipsum dolor sit amet</span>
+                      <span className="text">Welcome to Elevate!</span>
                     </div>
                   </FadeIn>
                 </div>
@@ -454,6 +454,7 @@ export default function Home() {
             src="/shadow-right.png"
             alt=""
             data-delay="0.4"
+            priority
           />
           <Image
             width={1920}
@@ -462,6 +463,7 @@ export default function Home() {
             src="/shadow-left.png"
             alt=""
             data-delay="0.6"
+            priority
           />
           <Image
             width={1920}
@@ -470,6 +472,7 @@ export default function Home() {
             src="/shadow-center.png"
             alt=""
             data-delay="0.8"
+            priority
           />
           <Image
             width={1920}
@@ -477,6 +480,7 @@ export default function Home() {
             className="grid"
             src="/grid.svg"
             alt=""
+            priority
           />
         </section>
         <section id="features">
@@ -2453,7 +2457,7 @@ That's how Elevate was born.
                           <div
                             className="avatar"
                             style={{
-                              backgroundImage: "url('/providers/catdev.jpg')",
+                              backgroundImage: "url('/providers/catdev.png')",
                               backgroundSize: "cover",
                             }}
                           ></div>
