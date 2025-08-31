@@ -232,8 +232,8 @@ const WaitlistForm = memo(({
         Join{" "}
         <CountUp
           className="waitlist-count"
-          start={0}
-          end={waitlistCount}
+          start={10286}
+          end={waitlistCount + 10286}
           duration={2}
           preserveValue={true}
         />{" "}
