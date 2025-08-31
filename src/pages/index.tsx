@@ -1533,7 +1533,6 @@ export default function Home() {
                       </div>
                       <div className="screen">
                         <div className="avatar">
-                          <span className="initials">GM</span>
                         </div>
                       </div>
                     </div>
