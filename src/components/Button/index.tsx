@@ -4,7 +4,7 @@ import styles from './Button.module.scss'
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
-  variant?: 'primary' | 'primary-small' | 'main' | 'primary-price' | 'link' | 'end' | 'main-graphic' | 'secondary'
+  variant?: 'primary' | 'primary-small' | 'main' | 'primary-price' | 'link' | 'end' | 'main-graphic' | 'secondary' | 'ghost' | 'glass'
 }
 
 export const Button: React.FC<Props> = ({

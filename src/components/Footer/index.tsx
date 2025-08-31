@@ -41,9 +41,9 @@ export default function Footer() {
                 </Link>
               </li> */}
               <li className={styles.item}>
-                <Link href="/terms">
-                  <span className={styles.link}>Terms of Service</span>
-                </Link>
+                {/* <Link href="/terms"> */}
+                  {/* <span className={styles.link}>Terms of Service</span> */}
+                {/* </Link> */}
               </li>
             </ul>
           </div>

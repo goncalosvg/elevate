@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import Navigation from "~/components/Navigation/Navigation";
 import Transition from "~/components/Transition";
 
@@ -30,7 +30,309 @@ import FAQAccordion from "~/components/FAQ";
 import Footer from "~/components/Footer";
 import GradientReveal from "~/components/Text/Gradient";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import CountUp from "react-countup";
+import { useForm, useWatch } from "react-hook-form";
+import { z } from "zod";
+import { supabase } from "~/lib/supabase";
+
 gsap.registerPlugin(ScrollTrigger);
+
+const formSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+  phone: z.string().optional(),
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
+// Contact form schema
+const contactFormSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Please enter a valid email address"),
+  phone: z.string().optional(),
+  message: z.string().min(1, "Message is required"),
+});
+
+type ContactFormValues = z.infer<typeof contactFormSchema>;
+
+// Contact form component
+const ContactForm = memo(() => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+    mode: "onBlur",
+    reValidateMode: "onBlur",
+  });
+
+  const onSubmit = async (values: ContactFormValues) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to send message');
+      }
+
+      setIsSuccess(true);
+      form.reset();
+      
+      // Reset success state after 5 seconds
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      // You could add a toast notification here for error handling
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <form onSubmit={form.handleSubmit(onSubmit)} className="form">
+      <div>
+        <input
+          {...form.register("name")}
+          type="text"
+          className={`input ${form.formState.errors.name ? "error" : ""}`}
+          placeholder="Name *"
+        />
+        {form.formState.errors.name && (
+          <span className="error-message">{form.formState.errors.name.message}</span>
+        )}
+      </div>
+      
+      <div>
+        <input
+          {...form.register("email")}
+          type="email"
+          className={`input ${form.formState.errors.email ? "error" : ""}`}
+          placeholder="Email *"
+        />
+        {form.formState.errors.email && (
+          <span className="error-message">{form.formState.errors.email.message}</span>
+        )}
+      </div>
+      
+      <div>
+        <input
+          {...form.register("phone")}
+          type="tel"
+          className={`input ${form.formState.errors.phone ? "error" : ""}`}
+          placeholder="Phone Number"
+        />
+        {form.formState.errors.phone && (
+          <span className="error-message">{form.formState.errors.phone.message}</span>
+        )}
+      </div>
+      
+      <div>
+        <textarea
+          {...form.register("message")}
+          className={`input textarea ${form.formState.errors.message ? "error" : ""}`}
+          placeholder="Message *"
+        />
+        {form.formState.errors.message && (
+          <span className="error-message">{form.formState.errors.message.message}</span>
+        )}
+      </div>
+      
+      <Button 
+        variant="primary-price" 
+        type="submit"
+        disabled={isLoading}
+      >
+        {isLoading ? "Sending..." : isSuccess ? "Message Sent Successfully!" : "Send Message"}
+      </Button>
+    </form>
+  );
+});
+
+ContactForm.displayName = "ContactForm";
+
+// Memoized form component to prevent unnecessary re-renders
+const WaitlistForm = memo(({ 
+  onSubmit, 
+  isSuccess, 
+  isLoading, 
+  waitlistCount 
+}: {
+  onSubmit: (values: FormValues) => Promise<void>;
+  isSuccess: boolean;
+  isLoading: boolean;
+  waitlistCount: number;
+}) => {
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      phone: "",
+    },
+    mode: "onBlur",
+    reValidateMode: "onBlur",
+  });
+
+  const watchedEmail = useWatch({
+    control: form.control,
+    name: "email",
+    defaultValue: "",
+  });
+
+  const [debouncedEmail, setDebouncedEmail] = useState("");
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedEmail(watchedEmail || "");
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [watchedEmail]);
+
+  const emailInputProps = useMemo(() => ({
+    className: "input",
+    type: "email" as const,
+    placeholder: "Your best email",
+    autoComplete: "off" as const,
+  }), []);
+
+  const phoneInputProps = useMemo(() => ({
+    className: "input",
+    type: "tel" as const,
+    placeholder: "Phone Number (optional)",
+  }), []);
+
+  const handleFormSubmit = async (values: FormValues) => {
+    try {
+      await onSubmit(values);
+      form.reset();
+    } catch (error) {
+      form.setError("email", {
+        type: "server",
+        message: error instanceof Error ? error.message : "Failed to submit to waitlist",
+      });
+    }
+  };
+
+  return (
+    <>
+      <p className="waitlisted-p">
+        Join{" "}
+        <CountUp
+          className="waitlist-count"
+          start={0}
+          end={waitlistCount}
+          duration={2}
+          preserveValue={true}
+        />{" "}
+        other waitlisted people
+      </p>
+      <div className="w-full flex h-center">
+        <form
+          onSubmit={form.handleSubmit(handleFormSubmit)}
+          className="w-full flex dir-column"
+        >
+          <div className="w-full flex gap-xs">
+            <motion.input
+              {...emailInputProps}
+              {...form.register("email")}
+              animate={{
+                opacity: isSuccess ? 0.5 : 1,
+                scale: isSuccess ? 0.95 : 1,
+              }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            />
+            <motion.div
+              animate={{
+                minWidth: isSuccess ? "200px" : "auto",
+              }}
+              transition={{ 
+                duration: 0.4, 
+                ease: "easeOut",
+                type: "spring",
+                stiffness: 300,
+                damping: 25
+              }}
+            >
+              <Button type="submit" variant="main" disabled={isLoading}>
+                {isLoading
+                  ? "Joining..."
+                  : isSuccess
+                  ? "We'll keep you posted!"
+                  : "Join Waitlist"}
+              </Button>
+            </motion.div>
+          </div>
+          <AnimatePresence>
+            {debouncedEmail && !isSuccess && (
+              <motion.div
+                className="w-full flex gap-xs mgtop-xs"
+                initial={{ opacity: 0, y: -10, height: 0 }}
+                animate={{ opacity: 1, y: 0, height: "auto" }}
+                exit={{ 
+                  opacity: 0, 
+                  y: -10, 
+                  height: 0,
+                  transition: { duration: 0.3, ease: "easeIn" }
+                }}
+                transition={{ 
+                  duration: 0.4, 
+                  ease: "easeOut",
+                  height: { duration: 0.3, ease: "easeOut" }
+                }}
+                style={{ overflow: "hidden" }}
+              >
+                <input
+                  {...phoneInputProps}
+                  {...form.register("phone")}
+                />
+                <Button variant="ghost" type="button">
+                  Join Waitlist
+                </Button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          {form.formState.errors.email && (
+            <motion.p 
+              className="error"
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              {form.formState.errors.email.message}
+            </motion.p>
+          )}
+          {form.formState.errors.phone && (
+            <motion.p 
+              className="error"
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              {form.formState.errors.phone.message}
+            </motion.p>
+          )}
+        </form>
+      </div>
+    </>
+  );
+});
+
+WaitlistForm.displayName = 'WaitlistForm';
 
 export default function Home() {
   const [showAllProviders, setShowAllProviders] = useState(false);
@@ -126,8 +428,164 @@ export default function Home() {
     },
   };
 
-  const clientApiKey = process.env.NEXT_PUBLIC_CLIENT_API_KEY as string;
-  const collectionId = process.env.NEXT_PUBLIC_COLLECTION_ID as string;
+  /* WAITLIST */
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [waitlistCount, setWaitlistCount] = useState(0);
+
+
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (isSuccess) {
+      timeout = setTimeout(() => {
+        setIsSuccess(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timeout);
+  }, [isSuccess]);
+
+  useEffect(() => {
+    // Fetch initial count
+    const fetchInitialData = async () => {
+      const { count, error: countError } = await supabase
+        .from("waitlist")
+        .select("*", { count: "exact", head: true });
+
+      if (!countError && count !== null) {
+        setWaitlistCount(count);
+      }
+    };
+
+    // Set up realtime subscription
+    const subscription = supabase
+      .channel("waitlist-changes")
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "waitlist",
+        },
+        async () => {
+          // Refetch count on any change
+          const { count } = await supabase
+            .from("waitlist")
+            .select("*", { count: "exact", head: true });
+
+          if (count && count >= 0) {
+            setWaitlistCount(count);
+          }
+        }
+      )
+      .subscribe();
+
+    fetchInitialData();
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  const getDeviceInfo = () => {
+    if (typeof window === "undefined")
+      return {
+        device_mobile: false,
+        device_browser: "",
+        device_os: "",
+      };
+
+    const userAgent = window.navigator.userAgent;
+    const platform = window.navigator.platform;
+
+    return {
+      device_mobile:
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          userAgent
+        ),
+      device_browser: getBrowser(userAgent),
+      device_os: getOS(userAgent, platform),
+    };
+  };
+
+  const getBrowser = (userAgent: string) => {
+    // Check for Brave specifically
+    const nav = navigator as any;
+    if (nav && nav.brave) {
+      return "brave";
+    }
+
+    const browsers = {
+      chrome: /chrome|chromium|crios/i,
+      safari: /safari/i,
+      firefox: /firefox|fxios/i,
+      opera: /opera|opr/i,
+      ie: /msie|trident/i,
+      edge: /edge|edg/i,
+    };
+
+    for (const [browser, regex] of Object.entries(browsers)) {
+      if (regex.test(userAgent)) return browser;
+    }
+    return "unknown";
+  };
+
+  const getOS = (userAgent: string, platform: string) => {
+    const os = {
+      windows: /win/i,
+      mac: /mac/i,
+      linux: /linux/i,
+      android: /android/i,
+      ios: /iphone|ipad|ipod/i,
+    };
+
+    for (const [name, regex] of Object.entries(os)) {
+      if (regex.test(platform) || regex.test(userAgent)) return name;
+    }
+    return "unknown";
+  };
+
+  const getTimezoneInfo = () => {
+    return {
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    };
+  };
+
+  const handleSubmit = async (values: FormValues) => {
+    try {
+      setIsLoading(true);
+
+      // Get device and timezone information
+      const deviceInfo = getDeviceInfo();
+      const timezoneInfo = getTimezoneInfo();
+
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...values,
+          ...deviceInfo,
+          ...timezoneInfo,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to submit to waitlist");
+      }
+
+      setIsSuccess(true);
+    } catch (error) {
+      console.error("Error:", error);
+      // Error handling will be done in the form component
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Transition>
@@ -177,12 +635,12 @@ export default function Home() {
             <div className="content">
               <div className="title">
                 <div className="w-full flex h-center">
-                  <FadeIn delay={0.5}>
+                  {/* <FadeIn delay={0.5}>
                     <div className="news">
                       <div className="tag">News</div>
                       <span className="text">Welcome to Elevate!</span>
                     </div>
-                  </FadeIn>
+                  </FadeIn> */}
                 </div>
                 <TextReveal
                   type="h1"
@@ -198,10 +656,18 @@ export default function Home() {
                     media.
                   </p>
                 </FadeIn>
-                <FadeIn delay={0.5}>
+                {/* <FadeIn delay={0.5}>
                   <div className="w-full flex h-center">
                     <Button variant="main">Join the Community</Button>
                   </div>
+                </FadeIn> */}
+                <FadeIn delay={0.5}>
+                  <WaitlistForm
+                    onSubmit={handleSubmit}
+                    isSuccess={isSuccess}
+                    isLoading={isLoading}
+                    waitlistCount={waitlistCount}
+                  />
                 </FadeIn>
                 <div className="footer">
                   <FadeIn
@@ -806,11 +1272,11 @@ export default function Home() {
                             y2="246"
                             gradientUnits="userSpaceOnUse"
                           >
-                            <stop stop-color="#BFFB4F" stop-opacity="0.12" />
+                            <stop stopColor="#BFFB4F" stopOpacity="0.12" />
                             <stop
                               offset="1"
-                              stop-color="#BFFB4F"
-                              stop-opacity="0"
+                              stopColor="#BFFB4F"
+                              stopOpacity="0"
                             />
                           </linearGradient>
                         </defs>
@@ -2951,20 +3417,7 @@ That's how Elevate was born.
                 </div>
               </div>
               <div className="col-md-6">
-                <form action="" className="form">
-                  <input type="text" className="input" placeholder="Name *" />
-                  <input type="email" className="input" placeholder="Email *" />
-                  <input
-                    type="text"
-                    className="input"
-                    placeholder="Phone Number"
-                  />
-                  <textarea
-                    className="input textarea"
-                    placeholder="Message *"
-                  />
-                  <Button variant="primary-price">Send Message</Button>
-                </form>
+                <ContactForm />
               </div>
             </div>
           </div>

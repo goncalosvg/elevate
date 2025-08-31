@@ -174,7 +174,7 @@ export default function Navigation({ variant, hero }: INavigation) {
             </div>
             <div className={styles.right}>
               <div onClick={() => scrollToSection("contact")}>
-                <Button>Contact us</Button>
+                <Button variant="glass">Contact us</Button>
               </div>
             </div>
           </div>
