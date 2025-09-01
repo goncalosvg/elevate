@@ -20,7 +20,7 @@ import {
   CallRinging04Icon,
   InternetAntenna01Icon,
   LiveStreaming01Icon,
-  NewTwitterIcon
+  NewTwitterIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
@@ -75,22 +75,22 @@ const ContactForm = memo(() => {
   const onSubmit = async (values: ContactFormValues) => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to send message');
+        throw new Error(errorData.error || "Failed to send message");
       }
 
       setIsSuccess(true);
       form.reset();
-      
+
       // Reset success state after 5 seconds
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (error) {
@@ -111,10 +111,12 @@ const ContactForm = memo(() => {
           placeholder="Name *"
         />
         {form.formState.errors.name && (
-          <span className="error-message">{form.formState.errors.name.message}</span>
+          <span className="error-message">
+            {form.formState.errors.name.message}
+          </span>
         )}
       </div>
-      
+
       <div>
         <input
           {...form.register("email")}
@@ -123,10 +125,12 @@ const ContactForm = memo(() => {
           placeholder="Email *"
         />
         {form.formState.errors.email && (
-          <span className="error-message">{form.formState.errors.email.message}</span>
+          <span className="error-message">
+            {form.formState.errors.email.message}
+          </span>
         )}
       </div>
-      
+
       <div>
         <input
           {...form.register("phone")}
@@ -135,27 +139,33 @@ const ContactForm = memo(() => {
           placeholder="Phone Number"
         />
         {form.formState.errors.phone && (
-          <span className="error-message">{form.formState.errors.phone.message}</span>
+          <span className="error-message">
+            {form.formState.errors.phone.message}
+          </span>
         )}
       </div>
-      
+
       <div>
         <textarea
           {...form.register("message")}
-          className={`input textarea ${form.formState.errors.message ? "error" : ""}`}
+          className={`input textarea ${
+            form.formState.errors.message ? "error" : ""
+          }`}
           placeholder="Message *"
         />
         {form.formState.errors.message && (
-          <span className="error-message">{form.formState.errors.message.message}</span>
+          <span className="error-message">
+            {form.formState.errors.message.message}
+          </span>
         )}
       </div>
-      
-      <Button 
-        variant="primary-price" 
-        type="submit"
-        disabled={isLoading}
-      >
-        {isLoading ? "Sending..." : isSuccess ? "Message Sent Successfully!" : "Send Message"}
+
+      <Button variant="primary-price" type="submit" disabled={isLoading}>
+        {isLoading
+          ? "Sending..."
+          : isSuccess
+          ? "Message Sent Successfully!"
+          : "Send Message"}
       </Button>
     </form>
   );
@@ -164,175 +174,183 @@ const ContactForm = memo(() => {
 ContactForm.displayName = "ContactForm";
 
 // Memoized form component to prevent unnecessary re-renders
-const WaitlistForm = memo(({ 
-  onSubmit, 
-  isSuccess, 
-  isLoading, 
-  waitlistCount 
-}: {
-  onSubmit: (values: FormValues) => Promise<void>;
-  isSuccess: boolean;
-  isLoading: boolean;
-  waitlistCount: number;
-}) => {
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-      phone: "",
-    },
-    mode: "onBlur",
-    reValidateMode: "onBlur",
-  });
+const WaitlistForm = memo(
+  ({
+    onSubmit,
+    isSuccess,
+    isLoading,
+    waitlistCount,
+  }: {
+    onSubmit: (values: FormValues) => Promise<void>;
+    isSuccess: boolean;
+    isLoading: boolean;
+    waitlistCount: number;
+  }) => {
+    const form = useForm<FormValues>({
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        email: "",
+        phone: "",
+      },
+      mode: "onBlur",
+      reValidateMode: "onBlur",
+    });
 
-  const watchedEmail = useWatch({
-    control: form.control,
-    name: "email",
-    defaultValue: "",
-  });
+    const watchedEmail = useWatch({
+      control: form.control,
+      name: "email",
+      defaultValue: "",
+    });
 
-  const [debouncedEmail, setDebouncedEmail] = useState("");
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedEmail(watchedEmail || "");
-    }, 100);
+    const [debouncedEmail, setDebouncedEmail] = useState("");
 
-    return () => clearTimeout(timer);
-  }, [watchedEmail]);
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setDebouncedEmail(watchedEmail || "");
+      }, 100);
 
-  const emailInputProps = useMemo(() => ({
-    className: "input",
-    type: "email" as const,
-    placeholder: "Your best email",
-    autoComplete: "off" as const,
-  }), []);
+      return () => clearTimeout(timer);
+    }, [watchedEmail]);
 
-  const phoneInputProps = useMemo(() => ({
-    className: "input",
-    type: "tel" as const,
-    placeholder: "Phone Number (optional)",
-  }), []);
+    const emailInputProps = useMemo(
+      () => ({
+        className: "input",
+        type: "email" as const,
+        placeholder: "Your best email",
+        autoComplete: "off" as const,
+      }),
+      []
+    );
 
-  const handleFormSubmit = async (values: FormValues) => {
-    try {
-      await onSubmit(values);
-      form.reset();
-    } catch (error) {
-      form.setError("email", {
-        type: "server",
-        message: error instanceof Error ? error.message : "Failed to submit to waitlist",
-      });
-    }
-  };
+    const phoneInputProps = useMemo(
+      () => ({
+        className: "input",
+        type: "tel" as const,
+        placeholder: "Phone Number (optional)",
+      }),
+      []
+    );
 
-  return (
-    <>
-      <p className="waitlisted-p">
-        Join{" "}
-        <CountUp
-          className="waitlist-count"
-          start={10286}
-          end={waitlistCount + 10286}
-          duration={2}
-          preserveValue={true}
-        />{" "}
-        other waitlisted people
-      </p>
-      <div className="w-full flex h-center">
-        <form
-          onSubmit={form.handleSubmit(handleFormSubmit)}
-          className="w-full flex dir-column"
-        >
-          <div className="w-full flex gap-xs">
-            <motion.input
-              {...emailInputProps}
-              {...form.register("email")}
-              animate={{
-                opacity: isSuccess ? 0.5 : 1,
-                scale: isSuccess ? 0.95 : 1,
-              }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-            />
-            <motion.div
-              animate={{
-                minWidth: isSuccess ? "200px" : "auto",
-              }}
-              transition={{ 
-                duration: 0.4, 
-                ease: "easeOut",
-                type: "spring",
-                stiffness: 300,
-                damping: 25
-              }}
-            >
-              <Button type="submit" variant="main" disabled={isLoading}>
-                {isLoading
-                  ? "Joining..."
-                  : isSuccess
-                  ? "We'll keep you posted!"
-                  : "Join Waitlist"}
-              </Button>
-            </motion.div>
-          </div>
-          <AnimatePresence>
-            {debouncedEmail && !isSuccess && (
+    const handleFormSubmit = async (values: FormValues) => {
+      try {
+        await onSubmit(values);
+        form.reset();
+      } catch (error) {
+        form.setError("email", {
+          type: "server",
+          message:
+            error instanceof Error
+              ? error.message
+              : "Failed to submit to waitlist",
+        });
+      }
+    };
+
+    return (
+      <>
+        <p className="waitlisted-p">
+          Join{" "}
+          <CountUp
+            className="waitlist-count"
+            start={10286}
+            end={waitlistCount + 10286}
+            duration={2}
+            preserveValue={true}
+          />{" "}
+          other waitlisted people
+        </p>
+        <div className="w-full flex h-center">
+          <form
+            onSubmit={form.handleSubmit(handleFormSubmit)}
+            className="w-full flex dir-column"
+          >
+            <div className="w-full flex gap-xs">
+              <motion.input
+                {...emailInputProps}
+                {...form.register("email")}
+                animate={{
+                  opacity: isSuccess ? 0.5 : 1,
+                  scale: isSuccess ? 0.95 : 1,
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              />
               <motion.div
-                className="w-full flex gap-xs mgtop-xs"
-                initial={{ opacity: 0, y: -10, height: 0 }}
-                animate={{ opacity: 1, y: 0, height: "auto" }}
-                exit={{ 
-                  opacity: 0, 
-                  y: -10, 
-                  height: 0,
-                  transition: { duration: 0.3, ease: "easeIn" }
+                animate={{
+                  minWidth: isSuccess ? "200px" : "auto",
                 }}
-                transition={{ 
-                  duration: 0.4, 
+                transition={{
+                  duration: 0.4,
                   ease: "easeOut",
-                  height: { duration: 0.3, ease: "easeOut" }
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 25,
                 }}
-                style={{ overflow: "hidden" }}
               >
-                <input
-                  {...phoneInputProps}
-                  {...form.register("phone")}
-                />
-                <Button variant="ghost" type="button">
-                  Join Waitlist
+                <Button type="submit" variant="main" disabled={isLoading}>
+                  {isLoading
+                    ? "Joining..."
+                    : isSuccess
+                    ? "We'll keep you posted!"
+                    : "Join Waitlist"}
                 </Button>
               </motion.div>
+            </div>
+            <AnimatePresence>
+              {debouncedEmail && !isSuccess && (
+                <motion.div
+                  className="w-full flex gap-xs mgtop-xs"
+                  initial={{ opacity: 0, y: -10, height: 0 }}
+                  animate={{ opacity: 1, y: 0, height: "auto" }}
+                  exit={{
+                    opacity: 0,
+                    y: -10,
+                    height: 0,
+                    transition: { duration: 0.3, ease: "easeIn" },
+                  }}
+                  transition={{
+                    duration: 0.4,
+                    ease: "easeOut",
+                    height: { duration: 0.3, ease: "easeOut" },
+                  }}
+                  style={{ overflow: "hidden" }}
+                >
+                  <input {...phoneInputProps} {...form.register("phone")} />
+                  <Button variant="ghost" type="button">
+                    Join Waitlist
+                  </Button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            {form.formState.errors.email && (
+              <motion.p
+                className="error"
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                {form.formState.errors.email.message}
+              </motion.p>
             )}
-          </AnimatePresence>
-          {form.formState.errors.email && (
-            <motion.p 
-              className="error"
-              initial={{ opacity: 0, y: -5 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              {form.formState.errors.email.message}
-            </motion.p>
-          )}
-          {form.formState.errors.phone && (
-            <motion.p 
-              className="error"
-              initial={{ opacity: 0, y: -5 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              {form.formState.errors.phone.message}
-            </motion.p>
-          )}
-        </form>
-      </div>
-    </>
-  );
-});
+            {form.formState.errors.phone && (
+              <motion.p
+                className="error"
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                {form.formState.errors.phone.message}
+              </motion.p>
+            )}
+          </form>
+        </div>
+      </>
+    );
+  }
+);
 
-WaitlistForm.displayName = 'WaitlistForm';
+WaitlistForm.displayName = "WaitlistForm";
 
 export default function Home() {
   const [showAllProviders, setShowAllProviders] = useState(false);
@@ -433,8 +451,6 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [waitlistCount, setWaitlistCount] = useState(0);
-
-
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -1532,8 +1548,7 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="screen">
-                        <div className="avatar">
-                        </div>
+                        <div className="avatar"></div>
                       </div>
                     </div>
                   </div>
@@ -2291,16 +2306,16 @@ That's how Elevate was born.
                       <div
                         className="avatar"
                         style={{
-                          backgroundImage: "url('/providers/srpeters.jpg')",
+                          backgroundImage: "url('/providers/steki.jpg')",
                           backgroundSize: "cover",
                         }}
                       ></div>
                       <div className="flex dir-column">
                         <div className="flex v-center gap-sm">
-                          <h4 className="name">Sr Peters</h4>
+                          <h4 className="name">Steki</h4>
                           <div className="icons">
                             <Link
-                              href="https://x.com/SrPetersETH"
+                              href="https://x.com/stekisteks"
                               target="_blank"
                             >
                               <HugeiconsIcon
@@ -2320,9 +2335,9 @@ That's how Elevate was born.
                           </div>
                         </div>
                         <p className="description">
-                          OG with 4,500+ subscribers beloved for generosity,
-                          free-mint NFTs, spontaneous giveaways, and
-                          community-first approach.
+                          The Jeet Hunter, a crypto legend on X, famed for
+                          turning jeet panic sells into moonshot wins by buying
+                          dips with fearless conviction.
                         </p>
                       </div>
                     </div>
@@ -2954,6 +2969,102 @@ That's how Elevate was born.
                               Crypto OG dev since 2017, token and smart contract
                               developer for Ethereum and Solana, pioneer in
                               profitable token contracts.
+                            </p>
+                          </div>
+                        </div>
+                      </FadeIn>
+                    </div>
+                    <div className="col-md-3 col-tb-6 col-lp-4">
+                      <FadeIn
+                        delay={1.4}
+                        direction="up"
+                        distance={30}
+                        duration={0.8}
+                      >
+                        <div className="card flex gap-sm">
+                          <div
+                            className="avatar"
+                            style={{
+                              backgroundImage: "url('/providers/cold.jpg')",
+                              backgroundSize: "cover",
+                            }}
+                          ></div>
+                          <div className="flex dir-column">
+                            <div className="flex v-center gap-sm">
+                              <h4 className="name">Cold</h4>
+                              <div className="icons">
+                                <Link
+                                  href="https://x.com/cold_xyz"
+                                  target="_blank"
+                                >
+                                  <HugeiconsIcon
+                                    icon={NewTwitterIcon}
+                                    size={18}
+                                    color="#ffffff"
+                                    strokeWidth={1.5}
+                                  />
+                                </Link>
+                                <Image
+                                  width={50}
+                                  height={50}
+                                  className="icon"
+                                  src="/check.png"
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                            <p className="description">
+                              Cold, a Solana trench trader known for early calls
+                              like $CHONKY and $MYRO, mixing on-chain dominance
+                              with CT humor.
+                            </p>
+                          </div>
+                        </div>
+                      </FadeIn>
+                    </div>
+                    <div className="col-md-3 col-tb-6 col-lp-4">
+                      <FadeIn
+                        delay={1.4}
+                        direction="up"
+                        distance={30}
+                        duration={0.8}
+                      >
+                        <div className="card flex gap-sm">
+                          <div
+                            className="avatar"
+                            style={{
+                              backgroundImage: "url('/providers/kitty.jpg')",
+                              backgroundSize: "cover",
+                            }}
+                          ></div>
+                          <div className="flex dir-column">
+                            <div className="flex v-center gap-sm">
+                              <h4 className="name">Kitty</h4>
+                              <div className="icons">
+                                <Link
+                                  href="https://x.com/0xkitty69"
+                                  target="_blank"
+                                >
+                                  <HugeiconsIcon
+                                    icon={NewTwitterIcon}
+                                    size={18}
+                                    color="#ffffff"
+                                    strokeWidth={1.5}
+                                  />
+                                </Link>
+                                <Image
+                                  width={50}
+                                  height={50}
+                                  className="icon"
+                                  src="/check.png"
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                            <p className="description">
+                              Kitty, the self-proclaimed GCOAT of meme coin
+                              calls, nailed plays like $WOJAK and a 100x $TROLL,
+                              earning a spot as one of CT's sharpest cats.
                             </p>
                           </div>
                         </div>
