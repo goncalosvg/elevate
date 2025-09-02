@@ -51,6 +51,8 @@ export default function Document() {
         <link rel="apple-touch-icon" sizes="72x72" href="/favicons/touch-ipad.png" />
         <link rel="apple-touch-icon" sizes="114x114" href="/favicons/touch-iphone.png" />
         <link rel="apple-touch-icon" sizes="152x152" href="/favicons/touch-ipad-ret.png" />
+
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="c697a08f-7ac1-49e6-b7ce-1b2e208dee4d"></script>
       </Head>
       <body>
         <Main />
