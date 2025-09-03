@@ -97,8 +97,8 @@ section {
   outline: none;
   opacity: 0.7;
   border-radius: 250px;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
 }
 
 .slider:hover {
@@ -598,8 +598,8 @@ section {
 
 .waitlisted-p {
   color: colors.$text;
-  font-family: utils.$font-regular;
-  font-size: 14px;
+  font-family: utils.$font-medium;
+  font-size: 16px;
   letter-spacing: 0.3px;
   text-align: center;
 }
@@ -620,11 +620,11 @@ section {
   align-items: center;
   justify-content: center;
   padding: 3rem 1rem;
-  
+
   @media (min-width: 640px) {
     padding: 3rem 1.5rem;
   }
-  
+
   @media (min-width: 1024px) {
     padding: 3rem 2rem;
   }
@@ -641,7 +641,7 @@ section {
 .unsubscribe-header {
   margin-top: 1.5rem;
   text-align: center;
-  
+
   h2 {
     font-size: 1.875rem;
     font-weight: 800;
@@ -654,7 +654,7 @@ section {
   padding: 2rem 1rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   border-radius: 0.5rem;
-  
+
   @media (min-width: 640px) {
     padding: 2rem 2.5rem;
   }
@@ -674,7 +674,7 @@ section {
     animation: spin 1s linear infinite;
     margin: 0 auto;
   }
-  
+
   .loading-text {
     margin-top: 1rem;
     font-size: 0.875rem;
@@ -692,34 +692,34 @@ section {
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    
+
     svg {
       width: 1.5rem;
       height: 1.5rem;
       color: #16a34a;
     }
   }
-  
+
   .success-title {
     margin-top: 1rem;
     font-size: 1.125rem;
     font-weight: 500;
     color: #111827;
   }
-  
+
   .success-message {
     margin-top: 0.5rem;
     font-size: 0.875rem;
     color: #6b7280;
   }
-  
+
   .home-link {
     margin-top: 1.5rem;
     font-size: 0.875rem;
     font-weight: 500;
     color: #4f46e5;
     text-decoration: none;
-    
+
     &:hover {
       color: #4338ca;
     }
@@ -736,34 +736,34 @@ section {
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    
+
     svg {
       width: 1.5rem;
       height: 1.5rem;
       color: #dc2626;
     }
   }
-  
+
   .error-title {
     margin-top: 1rem;
     font-size: 1.125rem;
     font-weight: 500;
     color: #111827;
   }
-  
+
   .error-message {
     margin-top: 0.5rem;
     font-size: 0.875rem;
     color: #6b7280;
   }
-  
+
   .home-link {
     margin-top: 1.5rem;
     font-size: 0.875rem;
     font-weight: 500;
     color: #4f46e5;
     text-decoration: none;
-    
+
     &:hover {
       color: #4338ca;
     }
