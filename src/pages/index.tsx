@@ -757,21 +757,6 @@ export default function Home() {
                     </FadeIn>
                     <FadeIn
                       direction="up"
-                      delay={1.4}
-                      distance={10}
-                      duration={1.5}
-                      hasBlur
-                    >
-                      <Image
-                        width={500}
-                        height={100}
-                        className="logo large"
-                        src="/companies/gmgn.png"
-                        alt="partner"
-                      />
-                    </FadeIn>
-                    <FadeIn
-                      direction="up"
                       delay={1.6}
                       distance={10}
                       duration={1.5}
@@ -793,7 +778,7 @@ export default function Home() {
               <Image
                 width={2500}
                 height={2500}
-                className="mockup blur-fade-in"
+                className="mockup margin-plus blur-fade-in"
                 src="/discord-channels.png"
                 alt=""
                 data-delay="1"
@@ -808,7 +793,7 @@ export default function Home() {
                 data-delay="1.2"
                 priority
               />
-              <Image
+              {/* <Image
                 width={2500}
                 height={2500}
                 className="mockup margin-plus blur-fade-in"
@@ -816,7 +801,7 @@ export default function Home() {
                 alt=""
                 data-delay="1.4"
                 priority
-              />
+              /> */}
               <div className="overlay"></div>
               <div className="glass"></div>
             </div>
@@ -2021,7 +2006,7 @@ That's how Elevate was born.
             </div>
             <div className="providers-container">
               <div className="row">
-                <div className="col-md-3 col-tb-6 col-lp-4">
+                {/* <div className="col-md-3 col-tb-6 col-lp-4">
                   <FadeIn delay={0} direction="up" distance={30} duration={0.8}>
                     <div className="card flex gap-sm">
                       <div
@@ -2060,7 +2045,7 @@ That's how Elevate was born.
                       </div>
                     </div>
                   </FadeIn>
-                </div>
+                </div> */}
                 <div className="col-md-3 col-tb-6 col-lp-4">
                   <FadeIn
                     delay={0.1}
@@ -2386,7 +2371,7 @@ That's how Elevate was born.
                     </div>
                   </FadeIn>
                 </div>
-                <div className="col-md-3 col-tb-6 col-lp-4">
+                {/* <div className="col-md-3 col-tb-6 col-lp-4">
                   <FadeIn
                     delay={1.1}
                     direction="up"
@@ -2433,7 +2418,7 @@ That's how Elevate was born.
                       </div>
                     </div>
                   </FadeIn>
-                </div>
+                </div> */}
                 <div className="col-md-3 col-tb-6 col-lp-4">
                   <FadeIn
                     delay={0.2}
@@ -2572,6 +2557,99 @@ That's how Elevate was born.
                     </div>
                   </FadeIn>
                 </div>
+                <div className="col-md-3 col-tb-6 col-lp-4">
+                  <FadeIn
+                    delay={1.4}
+                    direction="up"
+                    distance={30}
+                    duration={0.8}
+                  >
+                    <div className="card flex gap-sm">
+                      <div
+                        className="avatar"
+                        style={{
+                          backgroundImage: "url('/providers/kitty.jpg')",
+                          backgroundSize: "cover",
+                        }}
+                      ></div>
+                      <div className="flex dir-column">
+                        <div className="flex v-center gap-sm">
+                          <h4 className="name">Kitty</h4>
+                          <div className="icons">
+                            <Link
+                              href="https://x.com/0xkitty69"
+                              target="_blank"
+                            >
+                              <HugeiconsIcon
+                                icon={NewTwitterIcon}
+                                size={18}
+                                color="#ffffff"
+                                strokeWidth={1.5}
+                              />
+                            </Link>
+                            <Image
+                              width={50}
+                              height={50}
+                              className="icon"
+                              src="/check.png"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                        <p className="description">
+                          Kitty, the self-proclaimed GCOAT of meme coin calls,
+                          nailed plays like $WOJAK and a 100x $TROLL, earning a
+                          spot as one of CT's sharpest cats.
+                        </p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                </div>
+                <div className="col-md-3 col-tb-6 col-lp-4">
+                  <FadeIn
+                    delay={1.4}
+                    direction="up"
+                    distance={30}
+                    duration={0.8}
+                  >
+                    <div className="card flex gap-sm">
+                      <div
+                        className="avatar"
+                        style={{
+                          backgroundImage: "url('/providers/cold.jpg')",
+                          backgroundSize: "cover",
+                        }}
+                      ></div>
+                      <div className="flex dir-column">
+                        <div className="flex v-center gap-sm">
+                          <h4 className="name">Cold</h4>
+                          <div className="icons">
+                            <Link href="https://x.com/cold_xyz" target="_blank">
+                              <HugeiconsIcon
+                                icon={NewTwitterIcon}
+                                size={18}
+                                color="#ffffff"
+                                strokeWidth={1.5}
+                              />
+                            </Link>
+                            <Image
+                              width={50}
+                              height={50}
+                              className="icon"
+                              src="/check.png"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                        <p className="description">
+                          Cold, a Solana trench trader known for early calls
+                          like $CHONKY and $MYRO, mixing on-chain dominance with
+                          CT humor.
+                        </p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                </div>
               </div>
               {!showAllProviders && (
                 <div className="providers-overlay">
@@ -2637,7 +2715,7 @@ That's how Elevate was born.
                         </div>
                       </FadeIn>
                     </div>
-                    <div className="col-md-3 col-tb-6 col-lp-4">
+                    {/* <div className="col-md-3 col-tb-6 col-lp-4">
                       <FadeIn
                         delay={0.9}
                         direction="up"
@@ -2685,7 +2763,7 @@ That's how Elevate was born.
                           </div>
                         </div>
                       </FadeIn>
-                    </div>
+                    </div> */}
                     <div className="col-md-3 col-tb-6 col-lp-4">
                       <FadeIn
                         delay={0.4}
@@ -2774,9 +2852,10 @@ That's how Elevate was born.
                               </div>
                             </div>
                             <p className="description">
-                              "Former Believer, Turned Trader" who reads
-                              memecoin narratives like orderbooks, vocal about
-                              $CRCL early and cultural catalyst trading.
+                              Gem hunter who reads memecoin narratives like
+                              orderbooks, vocal about $rocky and $titcoin early.
+                              With a blend of humor and market insight, a real
+                              standout in the crypto space.
                             </p>
                           </div>
                         </div>
@@ -2969,102 +3048,6 @@ That's how Elevate was born.
                               Crypto OG dev since 2017, token and smart contract
                               developer for Ethereum and Solana, pioneer in
                               profitable token contracts.
-                            </p>
-                          </div>
-                        </div>
-                      </FadeIn>
-                    </div>
-                    <div className="col-md-3 col-tb-6 col-lp-4">
-                      <FadeIn
-                        delay={1.4}
-                        direction="up"
-                        distance={30}
-                        duration={0.8}
-                      >
-                        <div className="card flex gap-sm">
-                          <div
-                            className="avatar"
-                            style={{
-                              backgroundImage: "url('/providers/cold.jpg')",
-                              backgroundSize: "cover",
-                            }}
-                          ></div>
-                          <div className="flex dir-column">
-                            <div className="flex v-center gap-sm">
-                              <h4 className="name">Cold</h4>
-                              <div className="icons">
-                                <Link
-                                  href="https://x.com/cold_xyz"
-                                  target="_blank"
-                                >
-                                  <HugeiconsIcon
-                                    icon={NewTwitterIcon}
-                                    size={18}
-                                    color="#ffffff"
-                                    strokeWidth={1.5}
-                                  />
-                                </Link>
-                                <Image
-                                  width={50}
-                                  height={50}
-                                  className="icon"
-                                  src="/check.png"
-                                  alt=""
-                                />
-                              </div>
-                            </div>
-                            <p className="description">
-                              Cold, a Solana trench trader known for early calls
-                              like $CHONKY and $MYRO, mixing on-chain dominance
-                              with CT humor.
-                            </p>
-                          </div>
-                        </div>
-                      </FadeIn>
-                    </div>
-                    <div className="col-md-3 col-tb-6 col-lp-4">
-                      <FadeIn
-                        delay={1.4}
-                        direction="up"
-                        distance={30}
-                        duration={0.8}
-                      >
-                        <div className="card flex gap-sm">
-                          <div
-                            className="avatar"
-                            style={{
-                              backgroundImage: "url('/providers/kitty.jpg')",
-                              backgroundSize: "cover",
-                            }}
-                          ></div>
-                          <div className="flex dir-column">
-                            <div className="flex v-center gap-sm">
-                              <h4 className="name">Kitty</h4>
-                              <div className="icons">
-                                <Link
-                                  href="https://x.com/0xkitty69"
-                                  target="_blank"
-                                >
-                                  <HugeiconsIcon
-                                    icon={NewTwitterIcon}
-                                    size={18}
-                                    color="#ffffff"
-                                    strokeWidth={1.5}
-                                  />
-                                </Link>
-                                <Image
-                                  width={50}
-                                  height={50}
-                                  className="icon"
-                                  src="/check.png"
-                                  alt=""
-                                />
-                              </div>
-                            </div>
-                            <p className="description">
-                              Kitty, the self-proclaimed GCOAT of meme coin
-                              calls, nailed plays like $WOJAK and a 100x $TROLL,
-                              earning a spot as one of CT's sharpest cats.
                             </p>
                           </div>
                         </div>
