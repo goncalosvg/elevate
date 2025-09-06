@@ -824,21 +824,6 @@ export default function Home() {
             </FadeIn>
             <FadeIn
               direction="up"
-              delay={0.8}
-              distance={10}
-              duration={1.5}
-              hasBlur
-            >
-              <Image
-                width={500}
-                height={100}
-                className="logo"
-                src="/companies/zoomex.png"
-                alt="partner"
-              />
-            </FadeIn>
-            <FadeIn
-              direction="up"
               delay={1}
               distance={10}
               duration={1.5}
@@ -864,21 +849,6 @@ export default function Home() {
                 height={100}
                 className="logo"
                 src="/companies/bloom.png"
-                alt="partner"
-              />
-            </FadeIn>
-            <FadeIn
-              direction="up"
-              delay={1.4}
-              distance={10}
-              duration={1.5}
-              hasBlur
-            >
-              <Image
-                width={500}
-                height={100}
-                className="logo"
-                src="/companies/bybit.png"
                 alt="partner"
               />
             </FadeIn>
