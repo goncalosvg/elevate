@@ -839,6 +839,21 @@ export default function Home() {
             </FadeIn>
             <FadeIn
               direction="up"
+              delay={0.8}
+              distance={10}
+              duration={1.5}
+              hasBlur
+            >
+              <Image
+                width={500}
+                height={100}
+                className="logo small"
+                src="/companies/okx.png"
+                alt="partner"
+              />
+            </FadeIn>
+            <FadeIn
+              direction="up"
               delay={1.2}
               distance={10}
               duration={1.5}
@@ -2104,9 +2119,8 @@ That's how Elevate was born.
                           </div>
                         </div>
                         <p className="description">
-                          Technical analyst with early belief in Pudgy Penguins,
-                          known for spotting momentum shifts in major coins and
-                          memecoins like $KORI, $michi.
+                          Know for being able to size into conviction plays
+                          while trenching at the same time.
                         </p>
                       </div>
                     </div>
@@ -2775,7 +2789,7 @@ That's how Elevate was born.
                             </div>
                             <p className="description">
                               50K+ followers, $150M+ raised, drove early wins
-                              like AstroVerse and Monsters.fun, pairs on-chain
+                              like Abstract and Pudgy Penguins, pairs on-chain
                               sleuthing with CT sentiment.
                             </p>
                           </div>
@@ -3018,6 +3032,56 @@ That's how Elevate was born.
                               Crypto OG dev since 2017, token and smart contract
                               developer for Ethereum and Solana, pioneer in
                               profitable token contracts.
+                            </p>
+                          </div>
+                        </div>
+                      </FadeIn>
+                    </div>
+                    <div className="col-md-3 col-tb-6 col-lp-4">
+                      <FadeIn
+                        delay={1.4}
+                        direction="up"
+                        distance={30}
+                        duration={0.8}
+                      >
+                        <div className="card flex gap-sm">
+                          <div
+                            className="avatar"
+                            style={{
+                              backgroundImage:
+                                "url('/providers/missoralways.jpg')",
+                              backgroundSize: "cover",
+                            }}
+                          ></div>
+                          <div className="flex dir-column">
+                            <div className="flex v-center gap-sm">
+                              <h4 className="name">MissorAlways</h4>
+                              <div className="icons">
+                                <Link
+                                  href="https://x.com/missoralways"
+                                  target="_blank"
+                                >
+                                  <HugeiconsIcon
+                                    icon={NewTwitterIcon}
+                                    size={18}
+                                    color="#ffffff"
+                                    strokeWidth={1.5}
+                                  />
+                                </Link>
+                                <Image
+                                  width={50}
+                                  height={50}
+                                  className="icon"
+                                  src="/check.png"
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                            <p className="description">
+                              Savvy trader who turned 10 ETH into $2 million
+                              backing $KTA early, now champions $MEMECOIN with
+                              strategic positioning and deep understanding of
+                              sustainable hype and growth.
                             </p>
                           </div>
                         </div>
