@@ -25,7 +25,7 @@ export default function Footer() {
               </Link>
               <li className={styles.item}>
                 <Link href="/">
-                  <span className={styles.link}>elevatellcbiz@gmail.com</span>
+                  <span className={styles.link}>help@joinelevate.net</span>
                 </Link>
               </li>
             </ul>

@@ -27,7 +27,7 @@ export default async function handler(
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: 'Elevate Contact Form <noreply@news.joinelevate.net>',
-      to: ['elevatellcbiz@gmail.com'],
+      to: ['help@joinelevate.net'],
       subject: `New Contact Form Submission from ${validatedData.name}`,
       text: getContactEmailText(validatedData),
       html: getContactEmailHtml(validatedData),

@@ -76,7 +76,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
         text: getWelcomeEmailText(unsubscribeToken),
         html: getWelcomeEmailHtml(data.id, unsubscribeToken),
-        replyTo: "elevatellcbiz@gmail.com"
+        replyTo: "help@joinelevate.net"
       })
 
       // Add user to Waitlist audience
