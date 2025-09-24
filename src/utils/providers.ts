@@ -20,7 +20,7 @@ export const featuredProviders: Provider[] = [
     image: "/providers/it4i.jpg",
     twitterUrl: "https://x.com/0xIT4I",
     description:
-      "One of the best and most respected traders in the space, Founder of BBB, advanced tools for onchain trading and spiritual leader. Known for his unique trading methodologies and mental guidance in the space.",
+      "Founder of BBB, advanced tools for onchain trading and spiritual leader. Being one of the best and most respected traders in the space, Known for his unique trading methodologies and mental guidance in the space.",
     delay: 0.1,
   },
   {
