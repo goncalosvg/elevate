@@ -20,7 +20,7 @@ export const featuredProviders: Provider[] = [
     image: "/providers/it4i.jpg",
     twitterUrl: "https://x.com/0xIT4I",
     description:
-      "One of the most degenerate crypto traders known for his banger 100x+ calls , huge trades and has lead one of the most succesful CTO's in memecoins $PNUT, $PEPE, $ASTER and many more.",
+      "One of the best and most respected traders in the space, Founder of BBB, advanced tools for onchain trading and spiritual leader. Known for his unique trading methodologies and mental guidance in the space.",
     delay: 0.1,
   },
   {
