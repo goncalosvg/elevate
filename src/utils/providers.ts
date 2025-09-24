@@ -12,7 +12,7 @@ export const featuredProviders: Provider[] = [
     image: "/providers/marcell.jpg",
     twitterUrl: "https://x.com/MarcellxMarcell",
     description:
-      "One of the most degenerate crypto traders known for his banger 100x+ calls , huge trades and has lead one of the most succesful CTO's in memecoins $PNUT, $PEPE, $ASTER and many more.",
+      "One of the most degenerate crypto traders known for his banger 100x+ calls , huge trades and conviction..and has a massive experience in building for projects as he has lead one of the most succesful CTO's in memecoin history $PNUT",
     delay: 0.1,
   },
   {
