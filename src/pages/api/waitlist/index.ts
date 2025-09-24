@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { resend } from '../../../lib/resend'
 import { supabaseAdmin } from '../../../lib/supabase'
-import { getWelcomeEmailHtml, getWelcomeEmailText } from '../../../lib/welcomeEmail'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -66,18 +65,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Send welcome email using Resend
     try {
-      await resend.emails.send({
-        from: 'Elevate <updates@news.joinelevate.net>',
-        to: body.email,
-        subject: "Welcome to Elevate — You're on the list",
-        headers: {
-          'List-Unsubscribe': `<https://joinelevate.net/api/unsubscribe?token=${unsubscribeToken}>`,
-          'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
-        },
-        text: getWelcomeEmailText(unsubscribeToken),
-        html: getWelcomeEmailHtml(data.id, unsubscribeToken),
-        replyTo: "help@joinelevate.net"
-      })
+      // await resend.emails.send({
+      //   from: 'Elevate <updates@news.joinelevate.net>',
+      //   to: body.email,
+      //   subject: "Welcome to Elevate — You're on the list",
+      //   headers: {
+      //     'List-Unsubscribe': `<https://joinelevate.net/api/unsubscribe?token=${unsubscribeToken}>`,
+      //     'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+      //   },
+      //   text: getWelcomeEmailText(unsubscribeToken),
+      //   html: getWelcomeEmailHtml(data.id, unsubscribeToken),
+      //   replyTo: "help@joinelevate.net"
+      // })
 
       // Add user to Waitlist audience
       await resend.contacts.create({
