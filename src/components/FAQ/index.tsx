@@ -74,7 +74,7 @@ export default function FAQAccordion() {
     {
       question: "How do I join?",
       answer:
-        "Go over to (insert buy page) to unlock all features for 30 days, with guaranteed re-entry if you choose to extend.",
+        "Go over to buy page to unlock all features for 30 days, with guaranteed re-entry if you choose to extend.",
     },
   ]
 
