@@ -100,7 +100,7 @@ export const featuredProviders: Provider[] = [
     image: "/providers/padrino.jpg",
     twitterUrl: "https://x.com/padrino_sol",
     description:
-      "",
+      "If you don't know what a project is about just check his video. His trusted reviews put him on the radar for all major crypto players. No shills just sharp insights to help you make informed decisions.",
     delay: 0.5,
   },
   // {
